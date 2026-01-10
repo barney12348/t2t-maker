@@ -37,7 +37,10 @@ const TRANSLATIONS = {
         footer_text: "&copy; 2026 Upcycle AI. Promoting sustainable living one project at a time.",
         tools_label: "You'll need:",
         save_btn: "Save",
-        saved_btn: "Saved"
+        saved_btn: "Saved",
+        share_btn: "Share",
+        share_msg: "Check out this upcycling idea: ",
+        share_success: "Link copied to clipboard!"
     },
     ko: {
         nav_home: "홈",
@@ -76,7 +79,10 @@ const TRANSLATIONS = {
         footer_text: "&copy; 2026 Upcycle AI. 지속 가능한 생활을 위한 작은 실천.",
         tools_label: "준비물:",
         save_btn: "저장",
-        saved_btn: "저장됨"
+        saved_btn: "저장됨",
+        share_btn: "공유",
+        share_msg: "이 업사이클링 아이디어 확인해보세요: ",
+        share_success: "링크가 복사되었습니다!"
     }
 };
 
@@ -191,8 +197,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Re-render dynamic content if visible
         if (!resultsSection.classList.contains('hidden')) {
-             // Ideally we would re-fetch or re-translate, but for mock we just reload the mock data
-             // If we had a real item loaded, we might keep it. For now, simple re-render if using mock
              renderResults(MOCK_DATA[lang]);
         }
         
@@ -247,7 +251,6 @@ document.addEventListener('DOMContentLoaded', () => {
     navHome.addEventListener('click', (e) => {
         e.preventDefault();
         showSection('home');
-        // Restore results if they were there
         if (detectedItemName.textContent !== '...') {
              resultsSection.classList.remove('hidden');
         }
@@ -350,8 +353,6 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             renderResults(MOCK_DATA[currentLang]);
             showLoading(false);
-            
-            // Scroll to results
             resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }, 2000);
     });
@@ -375,15 +376,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const index = savedIdeas.findIndex(item => item.id === idea.id && item.title === idea.title);
         
         if (index > -1) {
-            // Already saved, remove it
             savedIdeas.splice(index, 1);
         } else {
-            // Not saved, add it
             savedIdeas.push(idea);
         }
         
         localStorage.setItem('savedIdeas', JSON.stringify(savedIdeas));
-        return index === -1; // Returns true if added (saved), false if removed
+        return index === -1; 
     }
 
     function isSaved(idea) {
@@ -391,11 +390,32 @@ document.addEventListener('DOMContentLoaded', () => {
         return savedIdeas.some(item => item.id === idea.id && item.title === idea.title);
     }
 
+    // --- Sharing Logic ---
+    async function handleShare(idea) {
+        const shareData = {
+            title: `Upcycle AI: ${idea.title}`,
+            text: `${TRANSLATIONS[currentLang].share_msg} ${idea.title} - ${idea.description}`,
+            url: window.location.href
+        };
+
+        if (navigator.share) {
+            try {
+                await navigator.share(shareData);
+            } catch (err) {
+                console.log('Error sharing:', err);
+            }
+        } else {
+            // Fallback: Copy to clipboard
+            try {
+                await navigator.clipboard.writeText(`${shareData.text} ${shareData.url}`);
+                alert(TRANSLATIONS[currentLang].share_success);
+            } catch (err) {
+                console.error('Failed to copy: ', err);
+            }
+        }
+    }
+
     function createCardHTML(idea, saved) {
-        const diffClass = idea.difficulty.toLowerCase(); // Note: This might need mapping for KR difficulty classes if CSS depends on 'easy', 'medium' etc. 
-        // CSS depends on class names like .easy, .medium. 
-        // If data.difficulty is "쉬움", we need to map it back to "easy" for CSS class.
-        
         let cssClass = 'medium';
         const diffLower = idea.difficulty.toLowerCase();
         if (diffLower.includes('easy') || diffLower.includes('쉬움')) cssClass = 'easy';
@@ -405,6 +425,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const btnClass = saved ? 'btn-save saved' : 'btn-save';
         
         const saveText = saved ? TRANSLATIONS[currentLang].saved_btn : TRANSLATIONS[currentLang].save_btn;
+        const shareText = TRANSLATIONS[currentLang].share_btn;
         const toolsLabel = TRANSLATIONS[currentLang].tools_label;
 
         return `
@@ -423,6 +444,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </div>
             <div class="card-footer">
+                <button class="btn-share" data-id="${idea.id}" aria-label="Share">
+                    🔗 <span>${shareText}</span>
+                </button>
                 <button class="${btnClass}" data-id="${idea.id}" aria-label="Save to favorites">
                     ${heartIcon} <span>${saveText}</span>
                 </button>
@@ -432,24 +456,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderResults(data) {
         detectedItemName.textContent = data.detected_item;
-        ideasContainer.innerHTML = ''; // Clear previous
+        ideasContainer.innerHTML = ''; 
 
         data.ideas.forEach(idea => {
             const card = document.createElement('article');
             card.className = 'idea-card';
             
-            // Check if already saved
             const saved = isSaved(idea);
             card.innerHTML = createCardHTML(idea, saved);
             
-            // Add click event to save button
+            // Save Button Event
             const saveBtn = card.querySelector('.btn-save');
             saveBtn.addEventListener('click', () => {
                 const isNowSaved = toggleSave(idea);
-                // Update UI without re-rendering everything
                 const newSaveText = isNowSaved ? TRANSLATIONS[currentLang].saved_btn : TRANSLATIONS[currentLang].save_btn;
                 saveBtn.innerHTML = `${isNowSaved ? '❤️' : '🤍'} <span>${newSaveText}</span>`;
                 saveBtn.className = isNowSaved ? 'btn-save saved' : 'btn-save';
+            });
+
+            // Share Button Event
+            const shareBtn = card.querySelector('.btn-share');
+            shareBtn.addEventListener('click', () => {
+                handleShare(idea);
             });
             
             ideasContainer.appendChild(card);
@@ -474,14 +502,18 @@ document.addEventListener('DOMContentLoaded', () => {
         savedIdeas.forEach(idea => {
             const card = document.createElement('article');
             card.className = 'idea-card';
-            // It's definitely saved if it's in this list
             card.innerHTML = createCardHTML(idea, true);
             
             const saveBtn = card.querySelector('.btn-save');
             saveBtn.addEventListener('click', () => {
                 toggleSave(idea);
-                // In saved view, removing should remove the card immediately
                 renderSavedIdeas();
+            });
+
+            // Share Button Event for Saved Ideas
+            const shareBtn = card.querySelector('.btn-share');
+            shareBtn.addEventListener('click', () => {
+                handleShare(idea);
             });
 
             savedContainer.appendChild(card);

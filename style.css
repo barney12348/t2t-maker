@@ -359,15 +359,11 @@ main {
     gap: 1.5rem;
 }
 
-.card-footer {
-    padding: 1rem 1.5rem;
-    border-top: 1px solid var(--border);
-    display: flex;
-    justify-content: flex-end;
-    background-color: #fafafa;
+.btn-save.saved {
+    color: var(--secondary);
 }
 
-.btn-save {
+.btn-share {
     background: none;
     border: none;
     cursor: pointer;
@@ -377,15 +373,21 @@ main {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    margin-right: auto; /* Push save button to right if using flex space-between, or use gap */
 }
 
-.btn-save:hover {
-    color: var(--secondary);
+.btn-share:hover {
+    color: var(--primary);
     transform: scale(1.1);
 }
 
-.btn-save.saved {
-    color: var(--secondary);
+.card-footer {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between; /* Share on left, Save on right */
+    background-color: #fafafa;
+    align-items: center;
 }
 
 .card-description {
