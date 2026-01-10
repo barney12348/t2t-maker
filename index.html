@@ -1,14 +1,56 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hello World</title>
-  <link href='/style.css' rel='stylesheet'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upcycle AI - Turn Trash into Treasure</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <h1>Hello, world!</h1>
-  <button onclick="console.log('hello');">Press me</button>
-  <script defer type="text/javascript" src="/main.js"></script>
+    <header>
+        <div class="logo">
+            <span class="icon">✨</span>
+            <h1>Upcycle AI</h1>
+        </div>
+        <p class="tagline">Don't toss it, transform it.</p>
+    </header>
+
+    <main>
+        <section id="upload-section">
+            <div class="upload-zone" id="drop-zone">
+                <div class="upload-content">
+                    <span class="upload-icon">📸</span>
+                    <h3>Upload your item</h3>
+                    <p>Drag & drop an image here, or click to select</p>
+                    <input type="file" id="file-input" accept="image/*" hidden>
+                    <button class="btn-primary" id="upload-btn">Choose File</button>
+                </div>
+                <div class="preview-container hidden" id="preview-container">
+                    <img id="image-preview" src="" alt="Preview">
+                    <button class="btn-icon" id="remove-image" aria-label="Remove image">✕</button>
+                </div>
+            </div>
+            <button id="analyze-btn" class="btn-action hidden" disabled>✨ Generate Ideas</button>
+        </section>
+
+        <section id="results-section" class="hidden">
+            <div class="results-header">
+                <h2>Upcycling Ideas for: <span id="detected-item-name" class="highlight">...</span></h2>
+            </div>
+            <div class="cards-grid" id="ideas-container">
+                <!-- Cards will be injected here -->
+            </div>
+        </section>
+
+        <div id="loading-overlay" class="hidden">
+            <div class="spinner"></div>
+            <p>Scanning your item for potential...</p>
+        </div>
+    </main>
+
+    <script type="module" src="main.js"></script>
 </body>
 </html>
