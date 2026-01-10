@@ -25,3 +25,8 @@ Build the core interface and logic to demonstrate the "DIY & Upcycling Expert" p
     *   Handle image file selection/drop.
     *   Implement a `generateIdeas(image)` function. *Note: For this prototype, we will simulate the AI response with the provided JSON structure to ensure immediate functionality without requiring a live API key, but the code will be structured to easily swap in `fetch` calls.*
     *   Dynamically render the JSON data into the DOM.
+
+## Monetization
+*   **Google AdSense:** Integrated for ad revenue.
+    *   `ads.txt` added to root.
+    *   AdSense script and meta tag added to `index.html`.
