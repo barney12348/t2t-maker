@@ -21,40 +21,41 @@
         </div>
         <nav>
             <ul>
-                <li><a href="#" id="nav-home">Home</a></li>
-                <li><a href="#how-it-works">How it Works</a></li>
-                <li><a href="#gallery">Inspiration</a></li>
-                <li><a href="#saved" id="nav-saved">❤️ Saved Ideas</a></li>
+                <li><a href="#" id="nav-home" data-i18n="nav_home">Home</a></li>
+                <li><a href="#how-it-works" data-i18n="nav_how">How it Works</a></li>
+                <li><a href="#gallery" data-i18n="nav_insp">Inspiration</a></li>
+                <li><a href="#saved" id="nav-saved" data-i18n="nav_saved">❤️ Saved Ideas</a></li>
+                <li><button id="btn-lang" class="lang-btn" aria-label="Switch Language">🇰🇷 KO</button></li>
             </ul>
         </nav>
     </header>
 
     <main>
         <section class="hero" id="hero-section">
-            <h2>Don't Toss It, Transform It</h2>
-            <p class="tagline">Discover creative, sustainable ways to repurpose everyday items with the power of AI.</p>
+            <h2 data-i18n="hero_title">Don't Toss It, Transform It</h2>
+            <p class="tagline" data-i18n="hero_desc">Discover creative, sustainable ways to repurpose everyday items with the power of AI.</p>
         </section>
 
         <section id="upload-section">
             <div class="upload-zone" id="drop-zone">
                 <div class="upload-content">
                     <span class="upload-icon">📸</span>
-                    <h3>Upload your item</h3>
-                    <p>Drag & drop an image here, or click to select</p>
+                    <h3 data-i18n="upload_title">Upload your item</h3>
+                    <p data-i18n="upload_desc">Drag & drop an image here, or click to select</p>
                     <input type="file" id="file-input" accept="image/*" hidden>
-                    <button class="btn-primary" id="upload-btn">Choose File</button>
+                    <button class="btn-primary" id="upload-btn" data-i18n="upload_btn">Choose File</button>
                 </div>
                 <div class="preview-container hidden" id="preview-container">
                     <img id="image-preview" src="" alt="Preview">
                     <button class="btn-icon" id="remove-image" aria-label="Remove image">✕</button>
                 </div>
             </div>
-            <button id="analyze-btn" class="btn-action hidden" disabled>✨ Generate Ideas</button>
+            <button id="analyze-btn" class="btn-action hidden" disabled data-i18n="analyze_btn">✨ Generate Ideas</button>
         </section>
 
         <section id="results-section" class="hidden">
             <div class="results-header">
-                <h2>Upcycling Ideas for: <span id="detected-item-name" class="highlight">...</span></h2>
+                <h2><span data-i18n="results_title">Upcycling Ideas for:</span> <span id="detected-item-name" class="highlight">...</span></h2>
             </div>
             <div class="cards-grid" id="ideas-container">
                 <!-- Cards will be injected here -->
@@ -63,75 +64,75 @@
 
         <section id="saved-section" class="hidden">
             <div class="results-header">
-                <h2>Your Saved Collection ❤️</h2>
+                <h2 data-i18n="saved_title">Your Saved Collection ❤️</h2>
             </div>
             <div class="cards-grid" id="saved-container">
                 <!-- Saved Cards will be injected here -->
             </div>
             <div id="empty-saved-state" class="hidden info-section">
-                <p>You haven't saved any ideas yet. Start analyzing items to build your collection!</p>
-                <button class="btn-primary" id="btn-start-saving">Find Ideas</button>
+                <p data-i18n="saved_empty">You haven't saved any ideas yet. Start analyzing items to build your collection!</p>
+                <button class="btn-primary" id="btn-start-saving" data-i18n="saved_btn_find">Find Ideas</button>
             </div>
         </section>
 
         <!-- Static Content for AdSense Quality -->
         <section id="how-it-works" class="info-section">
-            <h2>How It Works</h2>
-            <p>Upcycle AI uses advanced image recognition to identify discarded items and suggests creative DIY projects. Our goal is to promote sustainability by extending the lifecycle of everyday objects.</p>
+            <h2 data-i18n="how_title">How It Works</h2>
+            <p data-i18n="how_desc">Upcycle AI uses advanced image recognition to identify discarded items and suggests creative DIY projects. Our goal is to promote sustainability by extending the lifecycle of everyday objects.</p>
             <div class="gallery-grid">
                 <article class="gallery-item">
                     <span class="gallery-icon">🔍</span>
-                    <h4>1. Identify</h4>
-                    <p>Upload a photo of any item you're about to throw away—bottles, boxes, old clothes, or furniture.</p>
+                    <h4 data-i18n="step1_title">1. Identify</h4>
+                    <p data-i18n="step1_desc">Upload a photo of any item you're about to throw away—bottles, boxes, old clothes, or furniture.</p>
                 </article>
                 <article class="gallery-item">
                     <span class="gallery-icon">💡</span>
-                    <h4>2. Brainstorm</h4>
-                    <p>Our AI analyzes the material and shape to generate unique, practical, and aesthetic upcycling ideas.</p>
+                    <h4 data-i18n="step2_title">2. Brainstorm</h4>
+                    <p data-i18n="step2_desc">Our AI analyzes the material and shape to generate unique, practical, and aesthetic upcycling ideas.</p>
                 </article>
                 <article class="gallery-item">
                     <span class="gallery-icon">🛠️</span>
-                    <h4>3. Create</h4>
-                    <p>Follow the simple guides, complete with tool lists and difficulty ratings, to build something new.</p>
+                    <h4 data-i18n="step3_title">3. Create</h4>
+                    <p data-i18n="step3_desc">Follow the simple guides, complete with tool lists and difficulty ratings, to build something new.</p>
                 </article>
             </div>
         </section>
 
         <section id="gallery" class="info-section">
-            <h2>Inspiration Gallery</h2>
-            <p>See what's possible. Here are some popular projects generated by our community.</p>
+            <h2 data-i18n="gallery_title">Inspiration Gallery</h2>
+            <p data-i18n="gallery_desc">See what's possible. Here are some popular projects generated by our community.</p>
             <div class="gallery-grid">
                 <article class="gallery-item">
                     <span class="gallery-icon">🍷</span>
-                    <h4>Wine Bottle Lamp</h4>
-                    <p>Turn empty glass bottles into elegant table lamps using simple fairy lights or a lamp kit.</p>
+                    <h4 data-i18n="gal1_title">Wine Bottle Lamp</h4>
+                    <p data-i18n="gal1_desc">Turn empty glass bottles into elegant table lamps using simple fairy lights or a lamp kit.</p>
                 </article>
                 <article class="gallery-item">
                     <span class="gallery-icon">👖</span>
-                    <h4>Denim Tote Bag</h4>
-                    <p>Repurpose old jeans into a sturdy, stylish tote bag perfect for grocery shopping.</p>
+                    <h4 data-i18n="gal2_title">Denim Tote Bag</h4>
+                    <p data-i18n="gal2_desc">Repurpose old jeans into a sturdy, stylish tote bag perfect for grocery shopping.</p>
                 </article>
                 <article class="gallery-item">
                     <span class="gallery-icon">🥫</span>
-                    <h4>Tin Can Planters</h4>
-                    <p>Clean tin cans, paint them with vibrant colors, and use them to grow kitchen herbs.</p>
+                    <h4 data-i18n="gal3_title">Tin Can Planters</h4>
+                    <p data-i18n="gal3_desc">Clean tin cans, paint them with vibrant colors, and use them to grow kitchen herbs.</p>
                 </article>
                 <article class="gallery-item">
                     <span class="gallery-icon">🪑</span>
-                    <h4>Ladder Bookshelf</h4>
-                    <p>Mount an old wooden ladder horizontally on the wall for a rustic, space-saving bookshelf.</p>
+                    <h4 data-i18n="gal4_title">Ladder Bookshelf</h4>
+                    <p data-i18n="gal4_desc">Mount an old wooden ladder horizontally on the wall for a rustic, space-saving bookshelf.</p>
                 </article>
             </div>
         </section>
 
         <div id="loading-overlay" class="hidden">
             <div class="spinner"></div>
-            <p>Scanning your item for potential...</p>
+            <p data-i18n="loading_text">Scanning your item for potential...</p>
         </div>
     </main>
 
     <footer>
-        <p>&copy; 2026 Upcycle AI. Promoting sustainable living one project at a time.</p>
+        <p data-i18n="footer_text">&copy; 2026 Upcycle AI. Promoting sustainable living one project at a time.</p>
         <div class="footer-links">
             <a href="privacy.html">Privacy Policy</a>
             <a href="terms.html">Terms of Service</a>
