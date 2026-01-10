@@ -338,6 +338,35 @@ main {
     gap: 1.5rem;
 }
 
+.card-footer {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: flex-end;
+    background-color: #fafafa;
+}
+
+.btn-save {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #cbd5e1;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-save:hover {
+    color: var(--secondary);
+    transform: scale(1.1);
+}
+
+.btn-save.saved {
+    color: var(--secondary);
+}
+
 .card-description {
     color: var(--text-muted);
     font-size: 0.95rem;

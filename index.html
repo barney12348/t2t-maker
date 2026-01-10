@@ -21,14 +21,16 @@
         </div>
         <nav>
             <ul>
+                <li><a href="#" id="nav-home">Home</a></li>
                 <li><a href="#how-it-works">How it Works</a></li>
                 <li><a href="#gallery">Inspiration</a></li>
+                <li><a href="#saved" id="nav-saved">❤️ Saved Ideas</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <section class="hero">
+        <section class="hero" id="hero-section">
             <h2>Don't Toss It, Transform It</h2>
             <p class="tagline">Discover creative, sustainable ways to repurpose everyday items with the power of AI.</p>
         </section>
@@ -56,6 +58,19 @@
             </div>
             <div class="cards-grid" id="ideas-container">
                 <!-- Cards will be injected here -->
+            </div>
+        </section>
+
+        <section id="saved-section" class="hidden">
+            <div class="results-header">
+                <h2>Your Saved Collection ❤️</h2>
+            </div>
+            <div class="cards-grid" id="saved-container">
+                <!-- Saved Cards will be injected here -->
+            </div>
+            <div id="empty-saved-state" class="hidden info-section">
+                <p>You haven't saved any ideas yet. Start analyzing items to build your collection!</p>
+                <button class="btn-primary" id="btn-start-saving">Find Ideas</button>
             </div>
         </section>
 

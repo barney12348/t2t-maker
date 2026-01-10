@@ -42,6 +42,55 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultsSection = document.getElementById('results-section');
     const ideasContainer = document.getElementById('ideas-container');
     const detectedItemName = document.getElementById('detected-item-name');
+    
+    // Saved Ideas Elements
+    const savedSection = document.getElementById('saved-section');
+    const savedContainer = document.getElementById('saved-container');
+    const emptySavedState = document.getElementById('empty-saved-state');
+    const navSaved = document.getElementById('nav-saved');
+    const navHome = document.getElementById('nav-home');
+    const btnStartSaving = document.getElementById('btn-start-saving');
+    
+    // Section Visibility Logic
+    const sections = {
+        home: [document.getElementById('hero-section'), document.getElementById('upload-section')],
+        saved: [savedSection]
+    };
+
+    function showSection(sectionName) {
+        // Hide all major sections
+        Object.values(sections).flat().forEach(el => el.classList.add('hidden'));
+        resultsSection.classList.add('hidden'); // Results are part of home flow but handled dynamically
+        
+        // Show target section
+        if (sections[sectionName]) {
+            sections[sectionName].forEach(el => el.classList.remove('hidden'));
+        }
+
+        if (sectionName === 'saved') {
+            renderSavedIdeas();
+        }
+    }
+
+    // Navigation Events
+    navSaved.addEventListener('click', (e) => {
+        e.preventDefault();
+        showSection('saved');
+    });
+
+    navHome.addEventListener('click', (e) => {
+        e.preventDefault();
+        showSection('home');
+        // Restore results if they were there
+        if (detectedItemName.textContent !== '...') {
+             resultsSection.classList.remove('hidden');
+        }
+    });
+
+    btnStartSaving.addEventListener('click', () => {
+        showSection('home');
+    });
+
 
     // Drag and Drop Events
     ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
@@ -149,6 +198,61 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // --- Saved Ideas Logic ---
+    function getSavedIdeas() {
+        const saved = localStorage.getItem('savedIdeas');
+        return saved ? JSON.parse(saved) : [];
+    }
+
+    function toggleSave(idea) {
+        const savedIdeas = getSavedIdeas();
+        const index = savedIdeas.findIndex(item => item.id === idea.id && item.title === idea.title);
+        
+        if (index > -1) {
+            // Already saved, remove it
+            savedIdeas.splice(index, 1);
+        } else {
+            // Not saved, add it
+            savedIdeas.push(idea);
+        }
+        
+        localStorage.setItem('savedIdeas', JSON.stringify(savedIdeas));
+        return index === -1; // Returns true if added (saved), false if removed
+    }
+
+    function isSaved(idea) {
+        const savedIdeas = getSavedIdeas();
+        return savedIdeas.some(item => item.id === idea.id && item.title === idea.title);
+    }
+
+    function createCardHTML(idea, saved) {
+        const diffClass = idea.difficulty.toLowerCase();
+        const heartIcon = saved ? '❤️' : '🤍';
+        const btnClass = saved ? 'btn-save saved' : 'btn-save';
+        
+        return `
+            <div class="card-header">
+                <span class="card-type">${idea.type}</span>
+                <h3 class="card-title">${idea.title}</h3>
+                <span class="badge ${diffClass}">${idea.difficulty}</span>
+            </div>
+            <div class="card-body">
+                <p class="card-description">${idea.description}</p>
+                <div class="tools-section">
+                    <h4>You'll need:</h4>
+                    <div class="tools-list">
+                        ${idea.required_tools.map(tool => `<span class="tool-tag">${tool}</span>`).join('')}
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="${btnClass}" data-id="${idea.id}" aria-label="Save to favorites">
+                    ${heartIcon} <span>${saved ? 'Saved' : 'Save'}</span>
+                </button>
+            </div>
+        `;
+    }
+
     function renderResults(data) {
         detectedItemName.textContent = data.detected_item;
         ideasContainer.innerHTML = ''; // Clear previous
@@ -157,29 +261,52 @@ document.addEventListener('DOMContentLoaded', () => {
             const card = document.createElement('article');
             card.className = 'idea-card';
             
-            // Determine difficulty badge class
-            const diffClass = idea.difficulty.toLowerCase();
+            // Check if already saved
+            const saved = isSaved(idea);
+            card.innerHTML = createCardHTML(idea, saved);
             
-            card.innerHTML = `
-                <div class="card-header">
-                    <span class="card-type">${idea.type}</span>
-                    <h3 class="card-title">${idea.title}</h3>
-                    <span class="badge ${diffClass}">${idea.difficulty}</span>
-                </div>
-                <div class="card-body">
-                    <p class="card-description">${idea.description}</p>
-                    <div class="tools-section">
-                        <h4>You'll need:</h4>
-                        <div class="tools-list">
-                            ${idea.required_tools.map(tool => `<span class="tool-tag">${tool}</span>`).join('')}
-                        </div>
-                    </div>
-                </div>
-            `;
+            // Add click event to save button
+            const saveBtn = card.querySelector('.btn-save');
+            saveBtn.addEventListener('click', () => {
+                const isNowSaved = toggleSave(idea);
+                // Update UI without re-rendering everything
+                saveBtn.innerHTML = `${isNowSaved ? '❤️' : '🤍'} <span>${isNowSaved ? 'Saved' : 'Save'}</span>`;
+                saveBtn.className = isNowSaved ? 'btn-save saved' : 'btn-save';
+            });
             
             ideasContainer.appendChild(card);
         });
 
         resultsSection.classList.remove('hidden');
+    }
+
+    function renderSavedIdeas() {
+        const savedIdeas = getSavedIdeas();
+        savedContainer.innerHTML = '';
+
+        if (savedIdeas.length === 0) {
+            emptySavedState.classList.remove('hidden');
+            savedContainer.classList.add('hidden');
+            return;
+        }
+
+        emptySavedState.classList.add('hidden');
+        savedContainer.classList.remove('hidden');
+
+        savedIdeas.forEach(idea => {
+            const card = document.createElement('article');
+            card.className = 'idea-card';
+            // It's definitely saved if it's in this list
+            card.innerHTML = createCardHTML(idea, true);
+            
+            const saveBtn = card.querySelector('.btn-save');
+            saveBtn.addEventListener('click', () => {
+                toggleSave(idea);
+                // In saved view, removing should remove the card immediately
+                renderSavedIdeas();
+            });
+
+            savedContainer.appendChild(card);
+        });
     }
 });
