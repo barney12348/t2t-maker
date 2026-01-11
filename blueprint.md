@@ -35,16 +35,13 @@ Build the core interface and logic to demonstrate the "DIY & Upcycling Expert" p
     *   Implement logic to switch between English and Korean versions of the terms.
     *   Ensure language preference persists across pages using `localStorage`.
     *   **Fix FOUC:** Implement immediate language detection script in `<head>` to prevent flash of wrong language content.
-6.  **Community Gallery (New):**
-    *   **Objective:** Create a space for users to share "Before & After" photos of their upcycling projects.
-    *   **UI:** Add a "Community" section with a grid of user-submitted project cards.
-    *   **Features:**
-        *   View community posts with Before/After images.
-        *   Mock "Share Your Project" form to upload photos and add descriptions.
-        *   "Like" functionality (toggle heart icon).
-    *   **Mock Implementation:** Data will be managed in-memory for the prototype phase.
+6.  **Mobile Optimization (New):**
+    *   **Hamburger Menu:** Implement a collapsible navigation menu for mobile screens.
+    *   **Responsive Layout:** Ensure buttons, cards, and text scale appropriately on smaller devices.
+    *   **Touch Friendly:** Increase tap targets for buttons and links.
 
 ## Monetization
 *   **Google AdSense:** Integrated for ad revenue.
+
     *   `ads.txt` added to root.
     *   AdSense script and meta tag added to `index.html`.

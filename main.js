@@ -175,6 +175,25 @@ function initApp() {
     // Language Elements
     const btnLang = document.getElementById('btn-lang');
 
+    // Hamburger Menu Logic
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const navMenu = document.getElementById('nav-menu');
+
+    if (hamburgerBtn && navMenu) {
+        hamburgerBtn.addEventListener('click', () => {
+            hamburgerBtn.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when a link is clicked
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburgerBtn.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+    }
+
     // --- Language Logic ---
     function setLanguage(lang) {
         if (!TRANSLATIONS[lang]) lang = 'en'; // Safety fallback
