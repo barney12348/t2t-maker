@@ -35,10 +35,16 @@ Build the core interface and logic to demonstrate the "DIY & Upcycling Expert" p
     *   Implement logic to switch between English and Korean versions of the terms.
     *   Ensure language preference persists across pages using `localStorage`.
     *   **Fix FOUC:** Implement immediate language detection script in `<head>` to prevent flash of wrong language content.
-6.  **Mobile Optimization (New):**
+6. **Mobile Optimization (New):**
     *   **Hamburger Menu:** Implement a collapsible navigation menu for mobile screens.
     *   **Responsive Layout:** Ensure buttons, cards, and text scale appropriately on smaller devices.
     *   **Touch Friendly:** Increase tap targets for buttons and links.
+7. **SEO & Internationalization (New):**
+    *   **URL Parameter Handling:** Append `?lang=ko` or `?lang=en` to the URL when toggling languages using `history.pushState` to ensure unique URLs for each language version.
+    *   **Deep Linking:** Automatically detect and apply the language from the URL `lang` parameter on initial load.
+    *   **Dynamic SEO Tags:** Programmatically update `<link rel="canonical">` and `<link rel="alternate" hreflang="...">` tags to help search engines index both language versions correctly.
+    *   **Persistence:** Maintain `localStorage` synchronization with the URL state.
+
 
 ## Monetization
 *   **Google AdSense:** Integrated for ad revenue.
