@@ -188,6 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Language Logic ---
     function setLanguage(lang) {
+        if (!TRANSLATIONS[lang]) lang = 'en'; // Safety fallback
         currentLang = lang;
         localStorage.setItem('preferredLang', lang);
         
@@ -201,7 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Update Text Content
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
-            if (TRANSLATIONS[lang][key]) {
+            if (TRANSLATIONS[lang] && TRANSLATIONS[lang][key]) {
                 if (key === 'footer_text') {
                      el.innerHTML = TRANSLATIONS[lang][key];
                 } else {
