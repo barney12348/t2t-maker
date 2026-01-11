@@ -292,18 +292,33 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Community Logic ---
     function renderCommunity() {
         communityContainer.innerHTML = '';
+        const t = TRANSLATIONS[currentLang]; // Get current translations
+
         MOCK_COMMUNITY.forEach(post => {
             const card = document.createElement('div');
             card.className = 'comm-card';
+            
+            // Use translated labels for Before/After
+            // We can infer these from the keys or add new keys. 
+            // Existing keys: label_before, label_after (used in modal). 
+            // Let's use generic terms or reuse those.
+            // label_before is "Before Photo" / "변신 전 (Before)". A bit long for a badge.
+            // Let's make short labels map.
+            const labels = {
+                en: { before: "Before", after: "After", time: "Just now" },
+                ko: { before: "전", after: "후", time: "방금 전" }
+            };
+            const lbl = labels[currentLang];
+
             card.innerHTML = `
                 <div class="comm-images">
                     <div class="comm-img-box">
                         <img src="${post.before}" alt="Before">
-                        <span class="img-label">Before</span>
+                        <span class="img-label">${lbl.before}</span>
                     </div>
                     <div class="comm-img-box">
                         <img src="${post.after}" alt="After">
-                        <span class="img-label">After</span>
+                        <span class="img-label">${lbl.after}</span>
                     </div>
                 </div>
                 <div class="comm-body">
@@ -314,7 +329,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <button class="btn-like ${post.liked ? 'active' : ''}" data-id="${post.id}">
                         ${post.liked ? '❤️' : '🤍'} <span>${post.likes}</span>
                     </button>
-                    <small style="color: #94a3b8;">Just now</small>
+                    <small style="color: #94a3b8;">${lbl.time}</small>
                 </div>
             `;
 
