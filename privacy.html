@@ -6,6 +6,14 @@
     <title>Privacy Policy - Upcycle AI</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script>
+        // Init Language immediately to prevent FOUC
+        (function() {
+            const savedLang = localStorage.getItem('preferredLang') || 'en';
+            document.documentElement.setAttribute('data-lang', savedLang);
+            document.documentElement.lang = savedLang;
+        })();
+    </script>
 </head>
 <body>
     <header>
@@ -23,7 +31,7 @@
 
     <main class="text-page">
         <!-- English Content -->
-        <div id="content-en">
+        <div id="content-en" class="lang-en-content">
             <h1>Privacy Policy</h1>
             <p>Last updated: January 10, 2026</p>
 
@@ -62,7 +70,7 @@
         </div>
 
         <!-- Korean Content -->
-        <div id="content-ko" class="hidden">
+        <div id="content-ko" class="lang-ko-content">
             <h1>개인정보 처리방침</h1>
             <p>최종 수정일: 2026년 1월 10일</p>
 
@@ -108,32 +116,28 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const btnLang = document.getElementById('btn-lang');
-            const contentEn = document.getElementById('content-en');
-            const contentKo = document.getElementById('content-ko');
-
-            function updateView(lang) {
+            
+            function updateBtn(lang) {
                 if (lang === 'ko') {
-                    contentEn.classList.add('hidden');
-                    contentKo.classList.remove('hidden');
                     btnLang.textContent = '🇺🇸 EN';
-                    document.documentElement.lang = 'ko';
                 } else {
-                    contentEn.classList.remove('hidden');
-                    contentKo.classList.add('hidden');
                     btnLang.textContent = '🇰🇷 KO';
-                    document.documentElement.lang = 'en';
                 }
-                localStorage.setItem('preferredLang', lang);
             }
 
-            // Init
-            const savedLang = localStorage.getItem('preferredLang') || 'en';
-            updateView(savedLang);
+            // Sync Button on Load
+            const currentLang = document.documentElement.getAttribute('data-lang') || 'en';
+            updateBtn(currentLang);
 
             btnLang.addEventListener('click', () => {
-                const current = localStorage.getItem('preferredLang') || 'en';
+                const current = document.documentElement.getAttribute('data-lang') || 'en';
                 const next = current === 'en' ? 'ko' : 'en';
-                updateView(next);
+                
+                // Update State
+                document.documentElement.setAttribute('data-lang', next);
+                document.documentElement.lang = next;
+                localStorage.setItem('preferredLang', next);
+                updateBtn(next);
             });
         });
     </script>

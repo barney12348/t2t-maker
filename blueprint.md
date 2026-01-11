@@ -29,10 +29,12 @@ Build the core interface and logic to demonstrate the "DIY & Upcycling Expert" p
     *   Add a language toggle button (English/Korean) to the header.
     *   Implement logic to switch between English and Korean versions of the policy text.
     *   Ensure language preference persists across pages using `localStorage`.
+    *   **Fix FOUC:** Implement immediate language detection script in `<head>` to prevent flash of wrong language content.
 5.  **Terms of Service (`terms.html`):**
     *   Add a language toggle button (English/Korean) to the header.
     *   Implement logic to switch between English and Korean versions of the terms.
     *   Ensure language preference persists across pages using `localStorage`.
+    *   **Fix FOUC:** Implement immediate language detection script in `<head>` to prevent flash of wrong language content.
 
 ## Monetization
 *   **Google AdSense:** Integrated for ad revenue.

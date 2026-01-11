@@ -565,6 +565,10 @@ footer p {
     display: none !important;
 }
 
+/* Language Switching for Static Pages */
+html[data-lang="en"] .lang-ko-content { display: none !important; }
+html[data-lang="ko"] .lang-en-content { display: none !important; }
+
 /* Responsive & Mobile Optimization */
 @media (max-width: 768px) {
     /* Header & Nav */
