@@ -723,55 +723,63 @@ html[data-lang="ko"] .lang-ko-content { display: block !important; }
 
 
 
-        nav {
+                nav {
 
 
 
-            position: fixed;
+                    position: fixed;
 
 
 
-            top: 0;
+                    top: 0;
 
 
 
-            right: -100%; /* Hidden by default */
+                    right: -100%; /* Hidden by default */
 
 
 
-            width: 100%;
+                    width: 100%;
 
 
 
-            height: 100vh;
+                    height: 100vh;
 
 
 
-            background-color: var(--surface);
+                    background-color: var(--surface);
 
 
 
-            flex-direction: column;
+                    flex-direction: column;
 
 
 
-            justify-content: center;
+                    justify-content: flex-start;
 
 
 
-            transition: right 0.3s ease-in-out;
+                    padding-top: 6rem;
 
 
 
-            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+                    transition: right 0.3s ease-in-out;
 
 
 
-            z-index: 1000; /* Higher than logo */
+                    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
 
 
 
-        }
+                    z-index: 1000; /* Higher than logo */
+
+
+
+                }
+
+
+
+        
 
 
 
