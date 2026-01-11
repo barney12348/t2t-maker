@@ -152,7 +152,7 @@ const MOCK_DATA = {
 
 let currentLang = 'en'; // Default
 
-document.addEventListener('DOMContentLoaded', () => {
+function initApp() {
     // --- DOM Elements ---
     const dropZone = document.getElementById('drop-zone');
     const fileInput = document.getElementById('file-input');
@@ -197,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.documentElement.lang = lang;
         
         // Update Button Text
-        btnLang.textContent = lang === 'en' ? '🇰🇷 KO' : '🇺🇸 EN';
+        if (btnLang) btnLang.textContent = lang === 'en' ? '🇰🇷 KO' : '🇺🇸 EN';
 
         // Update Text Content
         document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -212,15 +212,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Re-render dynamic content if visible
-        if (!resultsSection.classList.contains('hidden')) {
+        if (resultsSection && !resultsSection.classList.contains('hidden')) {
              renderResults(MOCK_DATA[lang]);
         }
         
-        if (!savedSection.classList.contains('hidden')) {
+        if (savedSection && !savedSection.classList.contains('hidden')) {
             renderSavedIdeas();
         }
 
-        if (!communitySection.classList.contains('hidden')) {
+        if (communitySection && !communitySection.classList.contains('hidden')) {
             renderCommunity();
         }
     }
@@ -235,10 +235,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Toggle Language
-    btnLang.addEventListener('click', () => {
-        const newLang = currentLang === 'en' ? 'ko' : 'en';
-        setLanguage(newLang);
-    });
+    if (btnLang) {
+        btnLang.addEventListener('click', () => {
+            const newLang = currentLang === 'en' ? 'ko' : 'en';
+            setLanguage(newLang);
+        });
+    }
 
 
     // --- Section Visibility Logic ---
@@ -250,12 +252,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function showSection(sectionName) {
         // Hide all major sections
-        Object.values(sections).flat().forEach(el => el.classList.add('hidden'));
-        resultsSection.classList.add('hidden'); // Results are part of home flow but handled dynamically
+        Object.values(sections).flat().forEach(el => {
+            if(el) el.classList.add('hidden');
+        });
+        if(resultsSection) resultsSection.classList.add('hidden');
         
         // Show target section
         if (sections[sectionName]) {
-            sections[sectionName].forEach(el => el.classList.remove('hidden'));
+            sections[sectionName].forEach(el => {
+                if(el) el.classList.remove('hidden');
+            });
         }
 
         if (sectionName === 'saved') {
@@ -268,48 +274,43 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Navigation Events
-    navSaved.addEventListener('click', (e) => {
+    if (navSaved) navSaved.addEventListener('click', (e) => {
         e.preventDefault();
         showSection('saved');
     });
 
-    navHome.addEventListener('click', (e) => {
+    if (navHome) navHome.addEventListener('click', (e) => {
         e.preventDefault();
         showSection('home');
-        if (detectedItemName.textContent !== '...') {
+        if (detectedItemName && detectedItemName.textContent !== '...') {
              resultsSection.classList.remove('hidden');
         }
     });
 
-    navCommunity.addEventListener('click', (e) => {
+    if (navCommunity) navCommunity.addEventListener('click', (e) => {
         e.preventDefault();
         showSection('community');
     });
 
-    btnStartSaving.addEventListener('click', () => {
+    if (btnStartSaving) btnStartSaving.addEventListener('click', () => {
         showSection('home');
     });
 
     // --- Community Logic ---
     function renderCommunity() {
+        if (!communityContainer) return;
         communityContainer.innerHTML = '';
-        const t = TRANSLATIONS[currentLang]; // Get current translations
+        const t = TRANSLATIONS[currentLang]; 
 
         MOCK_COMMUNITY.forEach(post => {
             const card = document.createElement('div');
             card.className = 'comm-card';
             
-            // Use translated labels for Before/After
-            // We can infer these from the keys or add new keys. 
-            // Existing keys: label_before, label_after (used in modal). 
-            // Let's use generic terms or reuse those.
-            // label_before is "Before Photo" / "변신 전 (Before)". A bit long for a badge.
-            // Let's make short labels map.
             const labels = {
                 en: { before: "Before", after: "After", time: "Just now" },
                 ko: { before: "전", after: "후", time: "방금 전" }
             };
-            const lbl = labels[currentLang];
+            const lbl = labels[currentLang] || labels['en'];
 
             card.innerHTML = `
                 <div class="comm-images">
@@ -346,11 +347,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Modal Logic
-    btnOpenShareModal.addEventListener('click', () => {
+    if (btnOpenShareModal) btnOpenShareModal.addEventListener('click', () => {
         shareModal.classList.remove('hidden');
     });
 
-    btnCloseModal.addEventListener('click', () => {
+    if (btnCloseModal) btnCloseModal.addEventListener('click', () => {
         shareModal.classList.add('hidden');
     });
 
@@ -360,14 +361,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    shareForm.addEventListener('submit', (e) => {
+    if (shareForm) shareForm.addEventListener('submit', (e) => {
         e.preventDefault();
         
         const newUser = document.getElementById('post-user').value;
         const newDesc = document.getElementById('post-desc').value;
         
-        // In a real app, we'd handle file uploads here. 
-        // For mock, we'll use placeholders.
         const newPost = {
             id: MOCK_COMMUNITY.length + 1,
             user: newUser,
@@ -386,32 +385,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // --- Drag and Drop Events ---
-    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-        dropZone.addEventListener(eventName, preventDefaults, false);
-    });
+    if (dropZone) {
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, preventDefaults, false);
+        });
 
-    function preventDefaults(e) {
-        e.preventDefault();
-        e.stopPropagation();
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropZone.addEventListener(eventName, highlight, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, unhighlight, false);
+        });
+
+        function highlight() {
+            dropZone.classList.add('drag-over');
+        }
+
+        function unhighlight() {
+            dropZone.classList.remove('drag-over');
+        }
+
+        dropZone.addEventListener('drop', handleDrop, false);
+
+        // Click to Upload
+        dropZone.addEventListener('click', () => {
+            if(previewContainer.classList.contains('hidden')) {
+                fileInput.click();
+            }
+        });
     }
-
-    ['dragenter', 'dragover'].forEach(eventName => {
-        dropZone.addEventListener(eventName, highlight, false);
-    });
-
-    ['dragleave', 'drop'].forEach(eventName => {
-        dropZone.addEventListener(eventName, unhighlight, false);
-    });
-
-    function highlight() {
-        dropZone.classList.add('drag-over');
-    }
-
-    function unhighlight() {
-        dropZone.classList.remove('drag-over');
-    }
-
-    dropZone.addEventListener('drop', handleDrop, false);
 
     function handleDrop(e) {
         const dt = e.dataTransfer;
@@ -419,20 +427,12 @@ document.addEventListener('DOMContentLoaded', () => {
         handleFiles(files);
     }
 
-    // Click to Upload
-    uploadBtn.addEventListener('click', (e) => {
-        e.stopPropagation(); // Prevent bubbling to dropZone click if nested
+    if (uploadBtn) uploadBtn.addEventListener('click', (e) => {
+        e.stopPropagation(); 
         fileInput.click();
     });
     
-    // Also make the whole box clickable if empty
-    dropZone.addEventListener('click', () => {
-        if(previewContainer.classList.contains('hidden')) {
-            fileInput.click();
-        }
-    });
-
-    fileInput.addEventListener('change', function() {
+    if (fileInput) fileInput.addEventListener('change', function() {
         handleFiles(this.files);
     });
 
@@ -458,22 +458,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Remove Image
-    removeImageBtn.addEventListener('click', (e) => {
-        e.stopPropagation(); // Prevent triggering dropZone click
+    if (removeImageBtn) removeImageBtn.addEventListener('click', (e) => {
+        e.stopPropagation(); 
         imagePreview.src = '';
         previewContainer.classList.add('hidden');
         analyzeBtn.classList.add('hidden');
         analyzeBtn.disabled = true;
-        fileInput.value = ''; // Reset input
+        fileInput.value = ''; 
         resultsSection.classList.add('hidden');
     });
 
-    // Generate Ideas (Mock AI Call)
-    analyzeBtn.addEventListener('click', async () => {
+    if (analyzeBtn) analyzeBtn.addEventListener('click', async () => {
         showLoading(true);
         
-        // Simulate network delay
         setTimeout(() => {
             renderResults(MOCK_DATA[currentLang]);
             showLoading(false);
@@ -529,7 +526,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.log('Error sharing:', err);
             }
         } else {
-            // Fallback: Copy to clipboard
             try {
                 await navigator.clipboard.writeText(`${shareData.text} ${shareData.url}`);
                 alert(TRANSLATIONS[currentLang].share_success);
@@ -579,6 +575,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function renderResults(data) {
+        if (!detectedItemName || !ideasContainer) return;
         detectedItemName.textContent = data.detected_item;
         ideasContainer.innerHTML = ''; 
 
@@ -589,7 +586,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const saved = isSaved(idea);
             card.innerHTML = createCardHTML(idea, saved);
             
-            // Save Button Event
             const saveBtn = card.querySelector('.btn-save');
             saveBtn.addEventListener('click', () => {
                 const isNowSaved = toggleSave(idea);
@@ -598,7 +594,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 saveBtn.className = isNowSaved ? 'btn-save saved' : 'btn-save';
             });
 
-            // Share Button Event
             const shareBtn = card.querySelector('.btn-share');
             shareBtn.addEventListener('click', () => {
                 handleShare(idea);
@@ -611,6 +606,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function renderSavedIdeas() {
+        if (!savedContainer) return;
         const savedIdeas = getSavedIdeas();
         savedContainer.innerHTML = '';
 
@@ -634,7 +630,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 renderSavedIdeas();
             });
 
-            // Share Button Event for Saved Ideas
             const shareBtn = card.querySelector('.btn-share');
             shareBtn.addEventListener('click', () => {
                 handleShare(idea);
@@ -643,4 +638,11 @@ document.addEventListener('DOMContentLoaded', () => {
             savedContainer.appendChild(card);
         });
     }
-});
+}
+
+// Robust Initialization
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initApp);
+} else {
+    initApp();
+}
