@@ -234,13 +234,14 @@ function initApp() {
         setLanguage(browserLang);
     }
 
-    // Toggle Language
-    if (btnLang) {
-        btnLang.addEventListener('click', () => {
+    // Toggle Language (Delegated Event for Robustness)
+    document.addEventListener('click', (e) => {
+        // Handle button or its children (if any)
+        if (e.target && (e.target.id === 'btn-lang' || e.target.closest('#btn-lang'))) {
             const newLang = currentLang === 'en' ? 'ko' : 'en';
             setLanguage(newLang);
-        });
-    }
+        }
+    });
 
 
     // --- Section Visibility Logic ---
