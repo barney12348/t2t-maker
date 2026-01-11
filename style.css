@@ -566,8 +566,9 @@ footer p {
 }
 
 /* Language Switching for Static Pages */
-html[data-lang="en"] .lang-ko-content { display: none !important; }
-html[data-lang="ko"] .lang-en-content { display: none !important; }
+.lang-en-content, .lang-ko-content { display: none !important; }
+html[data-lang="en"] .lang-en-content { display: block !important; }
+html[data-lang="ko"] .lang-ko-content { display: block !important; }
 
 /* Responsive & Mobile Optimization */
 @media (max-width: 768px) {

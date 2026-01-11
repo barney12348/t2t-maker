@@ -45,7 +45,7 @@
                 <p>We may collect, use, store and transfer different kinds of personal data about you which we have grouped together follows:</p>
                 <ul>
                     <li><strong>Usage Data:</strong> includes information about how you use our website, products and services.</li>
-                    <li><strong>Technical Data:</strong> includes internet protocol (IP) address, your login data, browser type and version, time zone setting and location, browser plug-in types and versions, operating system and platform and other technology on the devices you use to access this website.</li>
+                    <li><strong>Technical Data:</strong> includes internet protocol (IP) address, your login data, browser type and version, time zone setting and location, browser plug-인 types and versions, operating system and platform and other technology on the devices you use to access this website.</li>
                 </ul>
             </section>
 
@@ -110,34 +110,40 @@
     </main>
 
     <footer>
-        <p>&copy; 2026 Upcycle AI. All rights reserved.</p>
+        <p class="lang-en-content">&copy; 2026 Upcycle AI. All rights reserved.</p>
+        <p class="lang-ko-content">&copy; 2026 Upcycle AI. 모든 권리 보유.</p>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const btnLang = document.getElementById('btn-lang');
             
-            function updateBtn(lang) {
-                if (lang === 'ko') {
-                    btnLang.textContent = '🇺🇸 EN';
-                } else {
-                    btnLang.textContent = '🇰🇷 KO';
-                }
+            function updateUI(lang) {
+                // Update Button Text
+                btnLang.textContent = lang === 'ko' ? '🇺🇸 EN' : '🇰🇷 KO';
+                
+                // Double check hiding via JS to prevent any CSS caching issues
+                document.querySelectorAll('.lang-en-content').forEach(el => {
+                    el.style.display = lang === 'en' ? 'block' : 'none';
+                });
+                document.querySelectorAll('.lang-ko-content').forEach(el => {
+                    el.style.display = lang === 'ko' ? 'block' : 'none';
+                });
+                
+                // Update root attributes
+                document.documentElement.setAttribute('data-lang', lang);
+                document.documentElement.lang = lang;
+                localStorage.setItem('preferredLang', lang);
             }
 
-            // Sync Button on Load
-            const currentLang = document.documentElement.getAttribute('data-lang') || 'en';
-            updateBtn(currentLang);
+            // Sync on Load
+            const currentLang = localStorage.getItem('preferredLang') || 'en';
+            updateUI(currentLang);
 
             btnLang.addEventListener('click', () => {
-                const current = document.documentElement.getAttribute('data-lang') || 'en';
+                const current = localStorage.getItem('preferredLang') || 'en';
                 const next = current === 'en' ? 'ko' : 'en';
-                
-                // Update State
-                document.documentElement.setAttribute('data-lang', next);
-                document.documentElement.lang = next;
-                localStorage.setItem('preferredLang', next);
-                updateBtn(next);
+                updateUI(next);
             });
         });
     </script>
