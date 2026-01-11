@@ -40,7 +40,41 @@ const TRANSLATIONS = {
         saved_btn: "Saved",
         share_btn: "Share",
         share_msg: "Check out this upcycling idea: ",
-        share_success: "Link copied to clipboard!"
+        share_success: "Link copied to clipboard!",
+        // New How It Works & Tips
+        how_step1_detail: "Look around for items you don't use anymore—empty jars, cardboard boxes, old t-shirts, or even broken furniture.",
+        how_step2_detail: "Our AI technology identifies the object's material, shape, and condition to suggest the best repurposing projects.",
+        how_step3_detail: "We provide a step-by-step guide, including a list of necessary tools and the estimated difficulty level, so you can start creating immediately.",
+        tip_title: "Pro Tips for Best Results",
+        tip_1_title: "Good Lighting",
+        tip_1_desc: "Take photos in a well-lit area so the AI can clearly see the texture and details.",
+        tip_2_title: "Clear Background",
+        tip_2_desc: "Place the item against a plain background to help the AI isolate the object.",
+        tip_3_title: "One Item at a Time",
+        tip_3_desc: "For the most accurate ideas, scan one main item per photo.",
+        faq_title: "Frequently Asked Questions",
+        faq_q1: "Is this service free?",
+        faq_a1: "Yes! Upcycle AI is completely free to use for generating upcycling ideas.",
+        faq_q2: "Do I need to sign up?",
+        faq_a2: "No, you can start generating ideas instantly without an account. We use browser storage to save your favorite ideas.",
+        faq_q3: "What kind of items work best?",
+        faq_a3: "Common household waste like glass bottles, tin cans, cardboard, denim, and plastic containers works best.",
+        cta_title: "Ready to Start?",
+        cta_btn: "Upload Item Now",
+        // Inspiration Page
+        insp_hero_title: "Community Creations",
+        insp_hero_desc: "Explore a curated collection of upcycling projects from our global community.",
+        filter_all: "All",
+        filter_lighting: "Lighting",
+        filter_fashion: "Fashion",
+        filter_garden: "Garden",
+        filter_decor: "Home Decor",
+        featured_tag: "Featured Project",
+        featured_title: "Vertical PET Bottle Garden",
+        featured_desc: "A sustainable solution for urban gardening using recycled plastic bottles. Perfect for balconies and small kitchens.",
+        cta_submit_title: "Made Something Cool?",
+        cta_submit_desc: "Share your upcycling project with the community and inspire others!",
+        cta_submit_btn: "Submit Project"
     },
     ko: {
         nav_home: "홈",
@@ -59,11 +93,11 @@ const TRANSLATIONS = {
         saved_btn_find: "아이디어 찾기",
         how_title: "사용 방법",
         how_desc: "Upcycle AI는 고급 이미지 인식을 사용하여 버려진 물건을 식별하고 창의적인 DIY 프로젝트를 제안합니다. 우리의 목표는 일상 물건의 수명을 연장하여 지속 가능성을 촉진하는 것입니다.",
-        step1_title: "1. 식별",
+        step1_title: "1. 식별 (Identify)",
         step1_desc: "버리려는 물건(병, 상자, 헌 옷, 가구 등)의 사진을 업로드하세요.",
-        step2_title: "2. 브레인스토밍",
+        step2_title: "2. 브레인스토밍 (Brainstorm)",
         step2_desc: "AI가 재질과 모양을 분석하여 독특하고 실용적이며 심미적인 업사이클링 아이디어를 생성합니다.",
-        step3_title: "3. 제작",
+        step3_title: "3. 제작 (Create)",
         step3_desc: "도구 목록과 난이도가 포함된 간단한 가이드를 따라 새로운 물건을 만들어보세요.",
         gallery_title: "영감 갤러리",
         gallery_desc: "가능성을 확인해보세요. 커뮤니티에서 생성된 인기 프로젝트들입니다.",
@@ -82,7 +116,41 @@ const TRANSLATIONS = {
         saved_btn: "저장됨",
         share_btn: "공유",
         share_msg: "이 업사이클링 아이디어 확인해보세요: ",
-        share_success: "링크가 복사되었습니다!"
+        share_success: "링크가 복사되었습니다!",
+        // New How It Works & Tips
+        how_step1_detail: "더 이상 사용하지 않는 물건—빈 병, 택배 박스, 낡은 티셔츠, 혹은 부서진 가구 등을 찾아보세요.",
+        how_step2_detail: "우리의 AI 기술이 물건의 재질, 모양, 상태를 분석하여 최적의 리폼 프로젝트를 제안합니다.",
+        how_step3_detail: "필요한 도구 목록과 예상 난이도가 포함된 단계별 가이드를 제공하여 즉시 제작을 시작할 수 있습니다.",
+        tip_title: "더 좋은 결과를 위한 팁",
+        tip_1_title: "좋은 조명",
+        tip_1_desc: "AI가 질감과 디테일을 명확하게 볼 수 있도록 밝은 곳에서 촬영하세요.",
+        tip_2_title: "깔끔한 배경",
+        tip_2_desc: "AI가 물체만 정확히 인식할 수 있도록 단순한 배경에 물건을 놓아주세요.",
+        tip_3_title: "한 번에 하나씩",
+        tip_3_desc: "가장 정확한 아이디어를 얻으려면 한 번에 하나의 물건만 스캔하는 것이 좋습니다.",
+        faq_title: "자주 묻는 질문 (FAQ)",
+        faq_q1: "이 서비스는 무료인가요?",
+        faq_a1: "네! Upcycle AI는 업사이클링 아이디어를 생성하는 데 완전히 무료입니다.",
+        faq_q2: "회원가입이 필요한가요?",
+        faq_a2: "아니요, 계정 없이 즉시 아이디어를 생성할 수 있습니다. 즐겨찾기 저장은 브라우저 저장소를 사용합니다.",
+        faq_q3: "어떤 물건이 가장 잘 되나요?",
+        faq_a3: "유리병, 통조림 캔, 골판지 박스, 청바지, 플라스틱 용기 같은 일반적인 가정 폐기물이 가장 적합합니다.",
+        cta_title: "시작할 준비가 되셨나요?",
+        cta_btn: "지금 물건 업로드하기",
+        // Inspiration Page
+        insp_hero_title: "커뮤니티 작품",
+        insp_hero_desc: "전 세계 커뮤니티에서 공유된 창의적인 업사이클링 프로젝트를 만나보세요.",
+        filter_all: "전체",
+        filter_lighting: "조명",
+        filter_fashion: "패션",
+        filter_garden: "정원/식물",
+        filter_decor: "홈 데코",
+        featured_tag: "이달의 추천",
+        featured_title: "페트병 수직 정원",
+        featured_desc: "재활용 페트병을 활용한 지속 가능한 도시 정원입니다. 베란다나 작은 주방에 완벽합니다.",
+        cta_submit_title: "멋진 작품을 만드셨나요?",
+        cta_submit_desc: "당신의 업사이클링 프로젝트를 커뮤니티에 공유하고 다른 사람들에게 영감을 주세요!",
+        cta_submit_btn: "프로젝트 제출하기"
     }
 };
 
@@ -193,6 +261,21 @@ function initApp() {
             });
         });
     }
+    
+    // --- FAQ Toggle Logic (New) ---
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        if (question) {
+            question.addEventListener('click', () => {
+                // Close other items (optional - accordion style)
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) otherItem.classList.remove('active');
+                });
+                item.classList.toggle('active');
+            });
+        }
+    });
 
     // --- Language Logic ---
     function updateSEOTags(lang) {

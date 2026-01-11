@@ -455,7 +455,7 @@ main {
     font-weight: 500;
 }
 
-/* Info & Gallery Sections (New for High Quality Site) */
+/* Info & Gallery Sections */
 .info-section {
     width: 100%;
     text-align: center;
@@ -474,37 +474,279 @@ main {
     color: var(--text-muted);
 }
 
+/* --- Gallery Grid Improvement --- */
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
     margin-top: 2rem;
+    text-align: left;
 }
 
 .gallery-item {
     background: var(--surface);
-    padding: 1rem;
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-lg); /* More rounded */
     box-shadow: var(--shadow-sm);
-    text-align: left;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
 }
 
-.gallery-icon {
-    font-size: 2rem;
-    display: block;
-    margin-bottom: 0.5rem;
+.gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.gallery-img-placeholder {
+    width: 100%;
+    height: 180px;
+    background: #f1f5f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: #cbd5e1;
+    border-bottom: 1px solid var(--border);
+}
+
+.gallery-content {
+    padding: 1.5rem;
 }
 
 .gallery-item h4 {
+    font-size: 1.2rem;
     margin-bottom: 0.5rem;
     color: var(--text-main);
+    font-weight: 700;
 }
 
 .gallery-item p {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.5;
     margin: 0;
 }
+
+/* --- Filter Bar (New) --- */
+.filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 3rem;
+}
+
+.filter-btn {
+    background: none;
+    border: 1px solid var(--border);
+    padding: 0.5rem 1.25rem;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.filter-btn:hover, .filter-btn.active {
+    background-color: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+/* --- Featured Project (New) --- */
+.featured-section {
+    width: 100%;
+    max-width: 1000px;
+    background: linear-gradient(135deg, #1e293b, #0f172a);
+    color: white;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 4rem;
+    box-shadow: var(--shadow-lg);
+}
+
+.featured-content {
+    padding: 2.5rem;
+    flex: 1;
+}
+
+.featured-tag {
+    background-color: var(--secondary);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+.featured-section h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.featured-section p {
+    color: #cbd5e1;
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin-bottom: 2rem;
+}
+
+/* --- Timeline Styles (How it Works) --- */
+.timeline-section {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    padding: 2rem 0;
+}
+
+.timeline-item {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+    text-align: left;
+    position: relative;
+}
+
+/* Connecting Line */
+.timeline-section::before {
+    content: '';
+    position: absolute;
+    top: 2rem;
+    bottom: 0;
+    left: 2rem; /* Center of the icon circle */
+    width: 2px;
+    background-color: var(--border);
+    z-index: 0;
+}
+
+.timeline-icon-box {
+    width: 4rem;
+    height: 4rem;
+    background-color: var(--surface);
+    border: 2px solid var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    z-index: 1;
+    flex-shrink: 0;
+    box-shadow: var(--shadow-sm);
+}
+
+.timeline-content {
+    background-color: var(--surface);
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    flex: 1;
+}
+
+.timeline-content h3 {
+    margin-bottom: 0.5rem;
+    color: var(--primary);
+}
+
+.timeline-content p {
+    margin-bottom: 0 !important; /* Override general p styles */
+}
+
+/* --- Tips Section Styles --- */
+.tips-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+    text-align: left;
+}
+
+.tip-card {
+    background-color: #f0fdf4; /* Light green for tips */
+    border: 1px solid #bbf7d0;
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+}
+
+.tip-card h4 {
+    color: #15803d;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.tip-card p {
+    font-size: 0.9rem;
+    margin: 0 !important;
+    color: #166534;
+}
+
+/* --- FAQ Styles --- */
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.faq-item {
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    margin-bottom: 1rem;
+    overflow: hidden;
+}
+
+.faq-question {
+    width: 100%;
+    text-align: left;
+    padding: 1rem 1.5rem;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-main);
+}
+
+.faq-question:hover {
+    background-color: #f8fafc;
+}
+
+.faq-toggle {
+    transition: transform 0.3s;
+}
+
+.faq-item.active .faq-toggle {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    padding: 0 1.5rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.faq-item.active .faq-answer {
+    padding: 0 1.5rem 1.5rem;
+    max-height: 200px; /* Arbitrary large height */
+}
+
 
 /* Legal Pages Styling */
 .text-page {
@@ -953,6 +1195,24 @@ html[data-lang="ko"] .lang-ko-content { display: block !important; }
 
     }
 
+    /* Timeline Mobile */
+    .timeline-section::before {
+        left: 1.5rem; /* Adjust line position */
+    }
+
+    .timeline-icon-box {
+        width: 3rem;
+        height: 3rem;
+        font-size: 1.2rem;
+    }
+
+    .timeline-item {
+        gap: 1rem;
+    }
+
+    .timeline-content {
+        padding: 1rem;
+    }
 
 
     /* Footer */
@@ -971,6 +1231,15 @@ html[data-lang="ko"] .lang-ko-content { display: block !important; }
 
         gap: 1rem;
 
+    }
+
+    /* Featured Mobile */
+    .featured-section {
+        border-radius: 0; /* Full width on mobile often looks better squared off or keep rounded if margins exist */
+    }
+    
+    .featured-content {
+        padding: 1.5rem;
     }
 
 }

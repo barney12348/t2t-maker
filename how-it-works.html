@@ -45,27 +45,99 @@
     </header>
 
     <main class="text-page">
-        <section id="how-it-works" class="info-section" style="border-top: none;">
+        <!-- Hero Section -->
+        <section class="hero" style="margin-bottom: 3rem;">
             <h2 data-i18n="how_title">How It Works</h2>
-            <p data-i18n="how_desc">Upcycle AI uses advanced image recognition to identify discarded items and suggests creative DIY projects. Our goal is to promote sustainability by extending the lifecycle of everyday objects.</p>
-            <div class="gallery-grid">
-                <article class="gallery-item">
-                    <span class="gallery-icon">🔍</span>
-                    <h4 data-i18n="step1_title">1. Identify</h4>
-                    <p data-i18n="step1_desc">Upload a photo of any item you're about to throw away—bottles, boxes, old clothes, or furniture.</p>
-                </article>
-                <article class="gallery-item">
-                    <span class="gallery-icon">💡</span>
-                    <h4 data-i18n="step2_title">2. Brainstorm</h4>
-                    <p data-i18n="step2_desc">Our AI analyzes the material and shape to generate unique, practical, and aesthetic upcycling ideas.</p>
-                </article>
-                <article class="gallery-item">
-                    <span class="gallery-icon">🛠️</span>
-                    <h4 data-i18n="step3_title">3. Create</h4>
-                    <p data-i18n="step3_desc">Follow the simple guides, complete with tool lists and difficulty ratings, to build something new.</p>
-                </article>
+            <p data-i18n="how_desc">Upcycle AI uses advanced image recognition to identify discarded items and suggests creative DIY projects.</p>
+        </section>
+
+        <!-- Timeline Section -->
+        <section class="timeline-section">
+            <div class="timeline-item">
+                <div class="timeline-icon-box">🔍</div>
+                <div class="timeline-content">
+                    <h3 data-i18n="step1_title">1. Identify</h3>
+                    <p data-i18n="how_step1_detail">Look around for items you don't use anymore—empty jars, cardboard boxes, old t-shirts, or even broken furniture.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-icon-box">🧠</div>
+                <div class="timeline-content">
+                    <h3 data-i18n="step2_title">2. Brainstorm</h3>
+                    <p data-i18n="how_step2_detail">Our AI technology identifies the object's material, shape, and condition to suggest the best repurposing projects.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-icon-box">🛠️</div>
+                <div class="timeline-content">
+                    <h3 data-i18n="step3_title">3. Create</h3>
+                    <p data-i18n="how_step3_detail">We provide a step-by-step guide, including a list of necessary tools and the estimated difficulty level, so you can start creating immediately.</p>
+                </div>
             </div>
         </section>
+
+        <!-- Pro Tips Section -->
+        <section class="info-section">
+            <h2 data-i18n="tip_title">Pro Tips for Best Results</h2>
+            <div class="tips-container">
+                <div class="tip-card">
+                    <h4 data-i18n="tip_1_title">💡 Good Lighting</h4>
+                    <p data-i18n="tip_1_desc">Take photos in a well-lit area so the AI can clearly see the texture and details.</p>
+                </div>
+                <div class="tip-card">
+                    <h4 data-i18n="tip_2_title">🖼️ Clear Background</h4>
+                    <p data-i18n="tip_2_desc">Place the item against a plain background to help the AI isolate the object.</p>
+                </div>
+                <div class="tip-card">
+                    <h4 data-i18n="tip_3_title">☝️ One Item at a Time</h4>
+                    <p data-i18n="tip_3_desc">For the most accurate ideas, scan one main item per photo.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-container" style="margin-top: 3rem; width: 100%;">
+            <h2 style="text-align: center; margin-bottom: 2rem;" data-i18n="faq_title">Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span data-i18n="faq_q1">Is this service free?</span>
+                    <span class="faq-toggle">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <p data-i18n="faq_a1">Yes! Upcycle AI is completely free to use for generating upcycling ideas.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span data-i18n="faq_q2">Do I need to sign up?</span>
+                    <span class="faq-toggle">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <p data-i18n="faq_a2">No, you can start generating ideas instantly without an account. We use browser storage to save your favorite ideas.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span data-i18n="faq_q3">What kind of items work best?</span>
+                    <span class="faq-toggle">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <p data-i18n="faq_a3">Common household waste like glass bottles, tin cans, cardboard, denim, and plastic containers works best.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bottom CTA -->
+        <section class="info-section" style="border: none; margin-top: 2rem;">
+            <h2 data-i18n="cta_title">Ready to Start?</h2>
+            <a href="index.html" class="btn-action" style="display: inline-block; text-decoration: none;" data-i18n="cta_btn">Upload Item Now</a>
+        </section>
+
     </main>
 
     <footer>
