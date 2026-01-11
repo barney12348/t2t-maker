@@ -57,7 +57,7 @@ header {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    z-index: 101; /* Ensure logo stays above mobile menu */
+    z-index: 10; /* Lower z-index for logo */
 }
 
 .logo h1 {
@@ -81,7 +81,7 @@ header {
     flex-direction: column;
     gap: 5px;
     padding: 0.5rem;
-    z-index: 101; /* Above mobile menu */
+    z-index: 1100; /* Higher than nav drawer */
 }
 
 .hamburger .bar {
@@ -723,31 +723,59 @@ html[data-lang="ko"] .lang-ko-content { display: block !important; }
 
 
 
-    nav {
+        nav {
 
-        position: fixed;
 
-        top: 0;
 
-        right: -100%; /* Hidden by default */
+            position: fixed;
 
-        width: 100%;
 
-        height: 100vh;
 
-        background-color: var(--surface);
+            top: 0;
 
-        flex-direction: column;
 
-        justify-content: center;
 
-        transition: right 0.3s ease-in-out;
+            right: -100%; /* Hidden by default */
 
-        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
 
-        z-index: 100;
 
-    }
+            width: 100%;
+
+
+
+            height: 100vh;
+
+
+
+            background-color: var(--surface);
+
+
+
+            flex-direction: column;
+
+
+
+            justify-content: center;
+
+
+
+            transition: right 0.3s ease-in-out;
+
+
+
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+
+
+
+            z-index: 1000; /* Higher than logo */
+
+
+
+        }
+
+
+
+    
 
 
 
