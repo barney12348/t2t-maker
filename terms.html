@@ -13,35 +13,103 @@
             <span class="icon">✨</span>
             <h1><a href="index.html" style="text-decoration: none; color: inherit;">Upcycle AI</a></h1>
         </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><button id="btn-lang" class="lang-btn" aria-label="Switch Language">🇰🇷 KO</button></li>
+            </ul>
+        </nav>
     </header>
 
     <main class="text-page">
-        <h1>Terms of Service</h1>
-        <p>Last updated: January 10, 2026</p>
+        <!-- English Content -->
+        <div id="content-en">
+            <h1>Terms of Service</h1>
+            <p>Last updated: January 10, 2026</p>
 
-        <section>
-            <h2>1. Agreement to Terms</h2>
-            <p>By accessing our website, you agree to be bound by these Terms of Service and to comply with all applicable laws and regulations.</p>
-        </section>
+            <section>
+                <h2>1. Agreement to Terms</h2>
+                <p>By accessing our website, you agree to be bound by these Terms of Service and to comply with all applicable laws and regulations.</p>
+            </section>
 
-        <section>
-            <h2>2. Intellectual Property Rights</h2>
-            <p>Unless otherwise indicated, the Site is our proprietary property and all source code, databases, functionality, software, website designs, audio, video, text, photographs, and graphics on the Site (collectively, the “Content”) and the trademarks, service marks, and logos contained therein (the “Marks”) are owned or controlled by us or licensed to us.</p>
-        </section>
+            <section>
+                <h2>2. Intellectual Property Rights</h2>
+                <p>Unless otherwise indicated, the Site is our proprietary property and all source code, databases, functionality, software, website designs, audio, video, text, photographs, and graphics on the Site (collectively, the “Content”) and the trademarks, service marks, and logos contained therein (the “Marks”) are owned or controlled by us or licensed to us.</p>
+            </section>
 
-        <section>
-            <h2>3. User Representations</h2>
-            <p>By using the Site, you represent and warrant that: (1) all registration information you submit will be true, accurate, current, and complete; (2) you will maintain the accuracy of such information and promptly update such registration information as necessary.</p>
-        </section>
+            <section>
+                <h2>3. User Representations</h2>
+                <p>By using the Site, you represent and warrant that: (1) all registration information you submit will be true, accurate, current, and complete; (2) you will maintain the accuracy of such information and promptly update such registration information as necessary.</p>
+            </section>
 
-        <section>
-            <h2>4. Limitation of Liability</h2>
-            <p>In no event will we or our directors, employees, or agents be liable to you or any third party for any direct, indirect, consequential, exemplary, incidental, special, or punitive damages, including lost profit, lost revenue, loss of data, or other damages arising from your use of the site.</p>
-        </section>
+            <section>
+                <h2>4. Limitation of Liability</h2>
+                <p>In no event will we or our directors, employees, or agents be liable to you or any third party for any direct, indirect, consequential, exemplary, incidental, special, or punitive damages, including lost profit, lost revenue, loss of data, or other damages arising from your use of the site.</p>
+            </section>
+        </div>
+
+        <!-- Korean Content -->
+        <div id="content-ko" class="hidden">
+            <h1>이용 약관</h1>
+            <p>최종 수정일: 2026년 1월 10일</p>
+
+            <section>
+                <h2>1. 약관 동의</h2>
+                <p>당사 웹사이트에 접속함으로써 귀하는 본 이용 약관의 구속을 받으며 모든 관련 법률 및 규정을 준수할 것에 동의하게 됩니다.</p>
+            </section>
+
+            <section>
+                <h2>2. 지적 재산권</h2>
+                <p>별도로 명시되지 않는 한, 사이트는 당사의 고유 자산이며 사이트의 모든 소스 코드, 데이터베이스, 기능, 소프트웨어, 웹사이트 디자인, 오디오, 비디오, 텍스트, 사진 및 그래픽(총칭하여 "콘텐츠")과 그 안에 포함된 상표, 서비스 마크 및 로고("마크")는 당사가 소유하거나 통제하며 당사에 라이선스가 부여됩니다.</p>
+            </section>
+
+            <section>
+                <h2>3. 사용자 진술</h2>
+                <p>사이트를 사용함으로써 귀하는 다음을 진술하고 보증합니다: (1) 귀하가 제출한 모든 등록 정보는 사실이고 정확하며 최신이며 완전합니다; (2) 귀하는 그러한 정보의 정확성을 유지하고 필요에 따라 즉시 업데이트할 것입니다.</p>
+            </section>
+
+            <section>
+                <h2>4. 책임의 한계</h2>
+                <p>어떠한 경우에도 당사나 당사의 이사, 직원 또는 대리인은 귀하 또는 제3자에게 사이트 사용으로 인해 발생하는 데이터 손실, 수익 손실, 이익 손실을 포함한 직접적, 간접적, 결과적, 징벌적, 우발적, 특별 손해에 대해 책임을 지지 않습니다.</p>
+            </section>
+        </div>
     </main>
 
     <footer>
         <p>&copy; 2026 Upcycle AI. All rights reserved.</p>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btnLang = document.getElementById('btn-lang');
+            const contentEn = document.getElementById('content-en');
+            const contentKo = document.getElementById('content-ko');
+
+            function updateView(lang) {
+                if (lang === 'ko') {
+                    contentEn.classList.add('hidden');
+                    contentKo.classList.remove('hidden');
+                    btnLang.textContent = '🇺🇸 EN';
+                    document.documentElement.lang = 'ko';
+                } else {
+                    contentEn.classList.remove('hidden');
+                    contentKo.classList.add('hidden');
+                    btnLang.textContent = '🇰🇷 KO';
+                    document.documentElement.lang = 'en';
+                }
+                localStorage.setItem('preferredLang', lang);
+            }
+
+            // Init
+            const savedLang = localStorage.getItem('preferredLang') || 'en';
+            updateView(savedLang);
+
+            btnLang.addEventListener('click', () => {
+                const current = localStorage.getItem('preferredLang') || 'en';
+                const next = current === 'en' ? 'ko' : 'en';
+                updateView(next);
+            });
+        });
+    </script>
 </body>
 </html>
