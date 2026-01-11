@@ -191,6 +191,10 @@ document.addEventListener('DOMContentLoaded', () => {
         currentLang = lang;
         localStorage.setItem('preferredLang', lang);
         
+        // Update Document Attributes for CSS Switching
+        document.documentElement.setAttribute('data-lang', lang);
+        document.documentElement.lang = lang;
+        
         // Update Button Text
         btnLang.textContent = lang === 'en' ? '🇰🇷 KO' : '🇺🇸 EN';
 
