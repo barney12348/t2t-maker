@@ -642,18 +642,7 @@ footer p {
 }
 
 .btn-like {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 1.1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    color: var(--text-muted);
-}
-
-.btn-like.active {
-    color: var(--secondary);
+    display: none;
 }
 
 /* Modal Styles */
@@ -664,59 +653,10 @@ footer p {
     width: 100%;
     height: 100%;
     background: rgba(0,0,0,0.5);
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     z-index: 2000;
-}
-
-.modal-content {
-    background: var(--surface);
-    width: 90%;
-    max-width: 500px;
-    border-radius: var(--radius-lg);
-    padding: 2rem;
-    position: relative;
-}
-
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-}
-
-.btn-close {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: var(--text-muted);
-}
-
-.form-group {
-    margin-bottom: 1.25rem;
-}
-
-.form-group label {
-    display: block;
-    font-size: 0.9rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-}
-
-.form-group input, .form-group textarea {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-    font-family: inherit;
-}
-
-.form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
 }
 
 /* Language Switching for Static Pages */
