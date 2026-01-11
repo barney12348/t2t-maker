@@ -25,6 +25,10 @@ Build the core interface and logic to demonstrate the "DIY & Upcycling Expert" p
     *   Handle image file selection/drop.
     *   Implement a `generateIdeas(image)` function. *Note: For this prototype, we will simulate the AI response with the provided JSON structure to ensure immediate functionality without requiring a live API key, but the code will be structured to easily swap in `fetch` calls.*
     *   Dynamically render the JSON data into the DOM.
+4.  **Privacy Policy (`privacy.html`):**
+    *   Add a language toggle button (English/Korean) to the header.
+    *   Implement logic to switch between English and Korean versions of the policy text.
+    *   Ensure language preference persists across pages using `localStorage`.
 
 ## Monetization
 *   **Google AdSense:** Integrated for ad revenue.
