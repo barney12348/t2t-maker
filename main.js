@@ -323,6 +323,12 @@ function initApp() {
     };
 
     function showSection(sectionName) {
+        // If not on index.html, we need to redirect
+        if (!document.getElementById('upload-section')) {
+             window.location.href = sectionName === 'saved' ? 'index.html#saved' : 'index.html';
+             return;
+        }
+
         // Hide all major sections
         Object.values(sections).flat().forEach(el => {
             if(el) el.classList.add('hidden');
@@ -338,20 +344,27 @@ function initApp() {
 
         if (sectionName === 'saved') {
             renderSavedIdeas();
+            window.location.hash = 'saved';
+        } else {
+             window.location.hash = '';
         }
     }
 
     // Navigation Events
     if (navSaved) navSaved.addEventListener('click', (e) => {
-        e.preventDefault();
-        showSection('saved');
+        if (document.getElementById('upload-section')) {
+            e.preventDefault();
+            showSection('saved');
+        }
     });
 
     if (navHome) navHome.addEventListener('click', (e) => {
-        e.preventDefault();
-        showSection('home');
-        if (detectedItemName && detectedItemName.textContent !== '...') {
-             resultsSection.classList.remove('hidden');
+        if (document.getElementById('upload-section')) {
+            e.preventDefault();
+            showSection('home');
+            if (detectedItemName && detectedItemName.textContent !== '...') {
+                 resultsSection.classList.remove('hidden');
+            }
         }
     });
 
@@ -359,6 +372,10 @@ function initApp() {
         showSection('home');
     });
 
+    // Check for hash on load
+    if (window.location.hash === '#saved' && document.getElementById('upload-section')) {
+        showSection('saved');
+    }
 
     // --- Drag and Drop Events ---
     if (dropZone) {

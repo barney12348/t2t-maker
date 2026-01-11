@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How it Works - Upcycle AI</title>
+    <meta name="description" content="Learn how Upcycle AI uses image recognition and AI to suggest sustainable DIY projects for your discarded items.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8505019136577205" crossorigin="anonymous"></script>
+    <script>
+        // Immediate FOUC fix for language
+        (function() {
+            const savedLang = localStorage.getItem('preferredLang');
+            const urlParams = new URLSearchParams(window.location.search);
+            const langParam = urlParams.get('lang');
+            const lang = langParam || savedLang || (navigator.language.startsWith('ko') ? 'ko' : 'en');
+            document.documentElement.setAttribute('data-lang', lang);
+            document.documentElement.lang = lang;
+        })();
+    </script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <span class="icon">✨</span>
+            <h1><a href="index.html" style="text-decoration: none; color: inherit;">Upcycle AI</a></h1>
+        </div>
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle Navigation">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        <nav id="nav-menu">
+            <ul>
+                <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+                <li><a href="how-it-works.html" class="active" data-i18n="nav_how">How it Works</a></li>
+                <li><a href="inspiration.html" data-i18n="nav_insp">Inspiration</a></li>
+                <li><a href="index.html#saved" data-i18n="nav_saved">❤️ Saved Ideas</a></li>
+                <li><button id="btn-lang" class="lang-btn" aria-label="Switch Language">🇰🇷 KO</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="text-page">
+        <section id="how-it-works" class="info-section" style="border-top: none;">
+            <h2 data-i18n="how_title">How It Works</h2>
+            <p data-i18n="how_desc">Upcycle AI uses advanced image recognition to identify discarded items and suggests creative DIY projects. Our goal is to promote sustainability by extending the lifecycle of everyday objects.</p>
+            <div class="gallery-grid">
+                <article class="gallery-item">
+                    <span class="gallery-icon">🔍</span>
+                    <h4 data-i18n="step1_title">1. Identify</h4>
+                    <p data-i18n="step1_desc">Upload a photo of any item you're about to throw away—bottles, boxes, old clothes, or furniture.</p>
+                </article>
+                <article class="gallery-item">
+                    <span class="gallery-icon">💡</span>
+                    <h4 data-i18n="step2_title">2. Brainstorm</h4>
+                    <p data-i18n="step2_desc">Our AI analyzes the material and shape to generate unique, practical, and aesthetic upcycling ideas.</p>
+                </article>
+                <article class="gallery-item">
+                    <span class="gallery-icon">🛠️</span>
+                    <h4 data-i18n="step3_title">3. Create</h4>
+                    <p data-i18n="step3_desc">Follow the simple guides, complete with tool lists and difficulty ratings, to build something new.</p>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p data-i18n="footer_text">&copy; 2026 Upcycle AI. Promoting sustainable living one project at a time.</p>
+        <div class="footer-links">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+        </div>
+    </footer>
+
+    <script type="module" src="main.js"></script>
+</body>
+</html>

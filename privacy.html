@@ -5,13 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy - Upcycle AI</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script>
         // Init Language immediately to prevent FOUC
         (function() {
-            const savedLang = localStorage.getItem('preferredLang') || 'en';
-            document.documentElement.setAttribute('data-lang', savedLang);
-            document.documentElement.lang = savedLang;
+            const savedLang = localStorage.getItem('preferredLang');
+            const urlParams = new URLSearchParams(window.location.search);
+            const langParam = urlParams.get('lang');
+            const lang = langParam || savedLang || (navigator.language.startsWith('ko') ? 'ko' : 'en');
+            document.documentElement.setAttribute('data-lang', lang);
+            document.documentElement.lang = lang;
         })();
     </script>
 </head>
@@ -21,9 +26,17 @@
             <span class="icon">✨</span>
             <h1><a href="index.html" style="text-decoration: none; color: inherit;">Upcycle AI</a></h1>
         </div>
-        <nav>
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle Navigation">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        <nav id="nav-menu">
             <ul>
-                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+                <li><a href="how-it-works.html" data-i18n="nav_how">How it Works</a></li>
+                <li><a href="inspiration.html" data-i18n="nav_insp">Inspiration</a></li>
+                <li><a href="index.html#saved" data-i18n="nav_saved">❤️ Saved Ideas</a></li>
                 <li><button id="btn-lang" class="lang-btn" aria-label="Switch Language">🇰🇷 KO</button></li>
             </ul>
         </nav>
@@ -31,9 +44,9 @@
 
     <main class="text-page">
         <!-- English Content -->
-        <div id="content-en" class="lang-en-content">
+        <div class="lang-en-content">
             <h1>Privacy Policy</h1>
-            <p>Last updated: January 10, 2026</p>
+            <p>Last updated: January 11, 2026</p>
 
             <section>
                 <h2>1. Introduction</h2>
@@ -45,7 +58,7 @@
                 <p>We may collect, use, store and transfer different kinds of personal data about you which we have grouped together follows:</p>
                 <ul>
                     <li><strong>Usage Data:</strong> includes information about how you use our website, products and services.</li>
-                    <li><strong>Technical Data:</strong> includes internet protocol (IP) address, your login data, browser type and version, time zone setting and location, browser plug-인 types and versions, operating system and platform and other technology on the devices you use to access this website.</li>
+                    <li><strong>Technical Data:</strong> includes internet protocol (IP) address, your login data, browser type and version, time zone setting and location, browser plug-in types and versions, operating system and platform and other technology on the devices you use to access this website.</li>
                 </ul>
             </section>
 
@@ -70,9 +83,9 @@
         </div>
 
         <!-- Korean Content -->
-        <div id="content-ko" class="lang-ko-content">
+        <div class="lang-ko-content">
             <h1>개인정보 처리방침</h1>
-            <p>최종 수정일: 2026년 1월 10일</p>
+            <p>최종 수정일: 2026년 1월 11일</p>
 
             <section>
                 <h2>1. 소개</h2>
@@ -110,42 +123,13 @@
     </main>
 
     <footer>
-        <p class="lang-en-content">&copy; 2026 Upcycle AI. All rights reserved.</p>
-        <p class="lang-ko-content">&copy; 2026 Upcycle AI. 모든 권리 보유.</p>
+        <p data-i18n="footer_text">&copy; 2026 Upcycle AI. Promoting sustainable living one project at a time.</p>
+        <div class="footer-links">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+        </div>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const btnLang = document.getElementById('btn-lang');
-            
-            function updateUI(lang) {
-                // Update Button Text
-                btnLang.textContent = lang === 'ko' ? '🇺🇸 EN' : '🇰🇷 KO';
-                
-                // Double check hiding via JS to prevent any CSS caching issues
-                document.querySelectorAll('.lang-en-content').forEach(el => {
-                    el.style.display = lang === 'en' ? 'block' : 'none';
-                });
-                document.querySelectorAll('.lang-ko-content').forEach(el => {
-                    el.style.display = lang === 'ko' ? 'block' : 'none';
-                });
-                
-                // Update root attributes
-                document.documentElement.setAttribute('data-lang', lang);
-                document.documentElement.lang = lang;
-                localStorage.setItem('preferredLang', lang);
-            }
-
-            // Sync on Load
-            const currentLang = localStorage.getItem('preferredLang') || 'en';
-            updateUI(currentLang);
-
-            btnLang.addEventListener('click', () => {
-                const current = localStorage.getItem('preferredLang') || 'en';
-                const next = current === 'en' ? 'ko' : 'en';
-                updateUI(next);
-            });
-        });
-    </script>
+    <script type="module" src="main.js"></script>
 </body>
 </html>

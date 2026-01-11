@@ -11,39 +11,27 @@ Upcycle AI is a modern web application designed to inspire users to repurpose wa
 ## Current Plan: Initial Prototype Implementation
 
 ### Objective
-Build the core interface and logic to demonstrate the "DIY & Upcycling Expert" persona.
+Build a multi-page web application to demonstrate the "DIY & Upcycling Expert" persona, providing a clear and organized user experience.
 
 ### Steps
-1.  **UI Construction (`index.html`):**
-    *   Create a clean, inviting landing area with a "Drag & Drop" image upload zone.
-    *   Create a container for the "Upcycling Ideas" results.
-2.  **Styling (`style.css`):**
-    *   Implement a responsive layout using CSS Grid/Flexbox.
-    *   Design "Idea Cards" with distinct visual cues for the different categories (Easy, Aesthetic, Functional).
-    *   Use modern typography and spacing.
-3.  **Logic (`main.js`):**
-    *   Handle image file selection/drop.
-    *   Implement a `generateIdeas(image)` function. *Note: For this prototype, we will simulate the AI response with the provided JSON structure to ensure immediate functionality without requiring a live API key, but the code will be structured to easily swap in `fetch` calls.*
-    *   Dynamically render the JSON data into the DOM.
-4.  **Privacy Policy (`privacy.html`):**
-    *   Add a language toggle button (English/Korean) to the header.
-    *   Implement logic to switch between English and Korean versions of the policy text.
-    *   Ensure language preference persists across pages using `localStorage`.
-    *   **Fix FOUC:** Implement immediate language detection script in `<head>` to prevent flash of wrong language content.
-5.  **Terms of Service (`terms.html`):**
-    *   Add a language toggle button (English/Korean) to the header.
-    *   Implement logic to switch between English and Korean versions of the terms.
-    *   Ensure language preference persists across pages using `localStorage`.
-    *   **Fix FOUC:** Implement immediate language detection script in `<head>` to prevent flash of wrong language content.
-6. **Mobile Optimization (New):**
-    *   **Hamburger Menu:** Implement a collapsible navigation menu for mobile screens.
-    *   **Responsive Layout:** Ensure buttons, cards, and text scale appropriately on smaller devices.
-    *   **Touch Friendly:** Increase tap targets for buttons and links.
-7. **SEO & Internationalization (New):**
-    *   **URL Parameter Handling:** Append `?lang=ko` or `?lang=en` to the URL when toggling languages using `history.pushState` to ensure unique URLs for each language version.
-    *   **Deep Linking:** Automatically detect and apply the language from the URL `lang` parameter on initial load.
-    *   **Dynamic SEO Tags:** Programmatically update `<link rel="canonical">` and `<link rel="alternate" hreflang="...">` tags to help search engines index both language versions correctly.
-    *   **Persistence:** Maintain `localStorage` synchronization with the URL state.
+1.  **Multi-Page Structure (Updated):**
+    *   **`index.html`:** Main landing page with image upload and AI analysis.
+    *   **`how-it-works.html`:** Dedicated page explaining the process.
+    *   **`inspiration.html`:** Dedicated page showcasing popular projects.
+    *   **`privacy.html` & `terms.html`:** Legal pages.
+2.  **Logic (`main.js`):**
+    *   Handle image file selection/drop on the Home page.
+    *   Implement language switching across all pages using `localStorage` and `data-i18n`.
+    *   Handle cross-page navigation (e.g., linking to the Saved section on the Home page from other pages).
+3.  **UI Construction:**
+    *   Maintain a consistent header and footer across all pages.
+    *   Implement a hamburger menu for mobile responsiveness on all pages.
+4.  **Styling (`style.css`):**
+    *   Common styles for shared components (Header, Footer, Navigation).
+    *   Specific layout for text-heavy pages (`.text-page`).
+5. **SEO & Internationalization:**
+    *   Programmatically update SEO tags based on language.
+    *   Ensure language persistence across page transitions.
 
 
 ## Monetization
