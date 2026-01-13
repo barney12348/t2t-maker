@@ -1243,3 +1243,78 @@ html[data-lang="ko"] .lang-ko-content { display: block !important; }
     }
 
 }
+
+/* --- Static Content Sections (SEO & AdSense) --- */
+.text-content-section {
+    width: 100%;
+    max-width: 1000px;
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.info-block {
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background-color: var(--surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+}
+
+.info-block h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--primary);
+}
+
+.info-block p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.features-block {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+}
+
+.feature-item {
+    flex: 1;
+    min-width: 250px;
+    background-color: var(--surface);
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+    transition: transform 0.3s;
+}
+
+.feature-item:hover {
+    transform: translateY(-5px);
+}
+
+.feature-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.feature-item h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+}
+
+.feature-item p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+#popular-ideas-section {
+    width: 100%;
+    margin-top: 2rem;
+}

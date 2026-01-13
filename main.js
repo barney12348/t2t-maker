@@ -74,7 +74,17 @@ const TRANSLATIONS = {
         featured_desc: "A sustainable solution for urban gardening using recycled plastic bottles. Perfect for balconies and small kitchens.",
         cta_submit_title: "Made Something Cool?",
         cta_submit_desc: "Share your upcycling project with the community and inspire others!",
-        cta_submit_btn: "Submit Project"
+        cta_submit_btn: "Submit Project",
+        // Static Content (Index)
+        why_upcycle_title: "Why Upcycle?",
+        why_upcycle_desc: "Upcycling is more than just a trend; it's a necessary shift towards a sustainable future. By repurposing items, we reduce landfill waste, conserve resources, and unleash our creativity. Every bottle, box, or piece of fabric has the potential to become something beautiful and functional.",
+        feature_1_title: "Eco-Friendly",
+        feature_1_desc: "Reduce your carbon footprint by giving old items a second life instead of buying new.",
+        feature_2_title: "Cost-Effective",
+        feature_2_desc: "Save money on home decor and organizers by using materials you already have.",
+        feature_3_title: "Creative Outlet",
+        feature_3_desc: "Express your unique style and improved your DIY skills with personalized projects.",
+        popular_ideas_title: "Popular Upcycling Ideas"
     },
     ko: {
         nav_home: "홈",
@@ -150,7 +160,17 @@ const TRANSLATIONS = {
         featured_desc: "재활용 페트병을 활용한 지속 가능한 도시 정원입니다. 베란다나 작은 주방에 완벽합니다.",
         cta_submit_title: "멋진 작품을 만드셨나요?",
         cta_submit_desc: "당신의 업사이클링 프로젝트를 커뮤니티에 공유하고 다른 사람들에게 영감을 주세요!",
-        cta_submit_btn: "프로젝트 제출하기"
+        cta_submit_btn: "프로젝트 제출하기",
+        // Static Content (Index)
+        why_upcycle_title: "왜 업사이클링인가요?",
+        why_upcycle_desc: "업사이클링은 단순한 유행이 아니라 지속 가능한 미래를 위한 필수적인 변화입니다. 물건을 재사용함으로써 우리는 매립 쓰레기를 줄이고 자원을 절약하며 창의력을 발휘할 수 있습니다. 모든 병, 상자, 천 조각은 아름답고 실용적인 무언가가 될 잠재력을 가지고 있습니다.",
+        feature_1_title: "친환경적",
+        feature_1_desc: "새 물건을 사는 대신 낡은 물건에 새 생명을 불어넣어 탄소 발자국을 줄이세요.",
+        feature_2_title: "경제적",
+        feature_2_desc: "이미 가지고 있는 재료를 사용하여 홈 데코와 정리 용품 비용을 절약하세요.",
+        feature_3_title: "창의적 활동",
+        feature_3_desc: "나만의 맞춤형 프로젝트로 독특한 스타일을 표현하고 DIY 기술을 향상시키세요.",
+        popular_ideas_title: "인기있는 업사이클링 아이디어"
     }
 };
 
@@ -401,7 +421,12 @@ function initApp() {
 
     // --- Section Visibility Logic ---
     const sections = {
-        home: [document.getElementById('hero-section'), document.getElementById('upload-section')],
+        home: [
+            document.getElementById('hero-section'), 
+            document.getElementById('upload-section'),
+            document.getElementById('static-content'),
+            document.getElementById('popular-ideas-section')
+        ],
         saved: [savedSection]
     };
 
@@ -446,7 +471,16 @@ function initApp() {
             e.preventDefault();
             showSection('home');
             if (detectedItemName && detectedItemName.textContent !== '...') {
-                 resultsSection.classList.remove('hidden');
+                 // If we have results, we might want to keep showing them? 
+                 // Or reset? Let's reset to home state unless we want to keep state.
+                 // Actually, if we click Home, we expect the initial state OR the current state.
+                 // For simplicity, let's just go to Home state. 
+                 // If the user has results, they are in the results section which is separate.
+                 // If we want to return to results, we'd need a specific check.
+                 // But typically Home means "Start over" or "Top".
+                 
+                 // If results are visible, let's hide them and show home.
+                 resultsSection.classList.add('hidden');
             }
         }
     });
@@ -543,6 +577,12 @@ function initApp() {
         analyzeBtn.disabled = true;
         fileInput.value = ''; 
         resultsSection.classList.add('hidden');
+        
+        // Show static content again
+        const staticContent = document.getElementById('static-content');
+        const popularIdeas = document.getElementById('popular-ideas-section');
+        if(staticContent) staticContent.classList.remove('hidden');
+        if(popularIdeas) popularIdeas.classList.remove('hidden');
     });
 
     // Generate Ideas (Mock AI Call)
@@ -683,6 +723,12 @@ function initApp() {
         });
 
         resultsSection.classList.remove('hidden');
+
+        // Hide Static Content
+        const staticContent = document.getElementById('static-content');
+        const popularIdeas = document.getElementById('popular-ideas-section');
+        if(staticContent) staticContent.classList.add('hidden');
+        if(popularIdeas) popularIdeas.classList.add('hidden');
     }
 
     function renderSavedIdeas() {

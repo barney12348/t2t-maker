@@ -23,15 +23,18 @@ Build a multi-page web application to demonstrate the "DIY & Upcycling Expert" p
     *   Handle image file selection/drop on the Home page.
     *   Implement language switching across all pages using `localStorage` and `data-i18n`.
     *   Handle cross-page navigation (e.g., linking to the Saved section on the Home page from other pages).
+    *   **Content Visibility:** Manage visibility of static "SEO-friendly" content on the home page vs. dynamic application state.
 3.  **UI Construction:**
     *   Maintain a consistent header and footer across all pages.
     *   Implement a hamburger menu for mobile responsiveness on all pages.
+    *   **Static Index Content:** Added "Why Upcycle?" and "Popular Ideas" sections to `index.html` to ensure valuable publisher content is visible on load for AdSense approval.
 4.  **Styling (`style.css`):**
     *   Common styles for shared components (Header, Footer, Navigation).
     *   Specific layout for text-heavy pages (`.text-page`).
 5. **SEO & Internationalization:**
     *   Programmatically update SEO tags based on language.
     *   Ensure language persistence across page transitions.
+    *   **Crawling:** Added `robots.txt` and `sitemap.xml` to facilitate proper indexing.
 
 
 ## Monetization
