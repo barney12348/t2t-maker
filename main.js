@@ -84,7 +84,28 @@ const TRANSLATIONS = {
         feature_2_desc: "Save money on home decor and organizers by using materials you already have.",
         feature_3_title: "Creative Outlet",
         feature_3_desc: "Express your unique style and improved your DIY skills with personalized projects.",
-        popular_ideas_title: "Popular Upcycling Ideas"
+        popular_ideas_title: "Popular Upcycling Ideas",
+        // Popular Cards
+        pop_type_decor: "Decor",
+        pop_type_storage: "Storage",
+        pop_type_fashion: "Fashion",
+        pop_diff_easy: "Easy",
+        pop_diff_medium: "Medium",
+        pop_card1_title: "Glass Jar Terrarium",
+        pop_card1_desc: "Create a miniature ecosystem in an old pasta sauce jar. Perfect for succulents and moss.",
+        pop_card1_tool1: "Clean Jar",
+        pop_card1_tool2: "Soil",
+        pop_card1_tool3: "Pebbles",
+        pop_card2_title: "Cereal Box Organizer",
+        pop_card2_desc: "Cut cereal boxes at an angle to create stylish magazine holders or paper organizers.",
+        pop_card2_tool1: "Scissors",
+        pop_card2_tool2: "Wrapping Paper",
+        pop_card2_tool3: "Glue",
+        pop_card3_title: "T-Shirt Yarn Rug",
+        pop_card3_desc: "Turn old t-shirts into yarn and crochet or braid a colorful, durable rug for your home.",
+        pop_card3_tool1: "Old Tees",
+        pop_card3_tool2: "Scissors",
+        pop_card3_tool3: "Crochet Hook (Opt)"
     },
     ko: {
         nav_home: "홈",
@@ -170,7 +191,28 @@ const TRANSLATIONS = {
         feature_2_desc: "이미 가지고 있는 재료를 사용하여 홈 데코와 정리 용품 비용을 절약하세요.",
         feature_3_title: "창의적 활동",
         feature_3_desc: "나만의 맞춤형 프로젝트로 독특한 스타일을 표현하고 DIY 기술을 향상시키세요.",
-        popular_ideas_title: "인기있는 업사이클링 아이디어"
+        popular_ideas_title: "인기있는 업사이클링 아이디어",
+        // Popular Cards
+        pop_type_decor: "데코",
+        pop_type_storage: "수납",
+        pop_type_fashion: "패션",
+        pop_diff_easy: "쉬움",
+        pop_diff_medium: "보통",
+        pop_card1_title: "유리병 테라리움",
+        pop_card1_desc: "다 쓴 파스타 소스 병에 작은 생태계를 만들어보세요. 다육식물과 이끼에 적합합니다.",
+        pop_card1_tool1: "깨끗한 병",
+        pop_card1_tool2: "흙",
+        pop_card1_tool3: "자갈",
+        pop_card2_title: "시리얼 박스 정리함",
+        pop_card2_desc: "시리얼 박스를 비스듬히 잘라 스타일리시한 잡지 꽂이나 서류 정리함을 만드세요.",
+        pop_card2_tool1: "가위",
+        pop_card2_tool2: "포장지",
+        pop_card2_tool3: "풀",
+        pop_card3_title: "티셔츠 실 러그",
+        pop_card3_desc: "낡은 티셔츠를 실로 만들어 집안을 화사하게 해줄 튼튼하고 다채로운 러그를 짜보세요.",
+        pop_card3_tool1: "헌 티셔츠",
+        pop_card3_tool2: "가위",
+        pop_card3_tool3: "코바늘 (선택)"
     }
 };
 
