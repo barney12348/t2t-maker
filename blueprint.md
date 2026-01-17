@@ -59,6 +59,14 @@ Build a multi-page web application to demonstrate the "DIY & Upcycling Expert" p
         *   `ItemList` schema on `inspiration.html`.
     *   **Sitemap & Robots.txt:** Updated to reflect the correct GitHub Pages URL structure.
 
+## GEO Optimization (Generative Engine Optimization)
+*   **Objective:** Optimize content for AI-powered search engines (Gemini, ChatGPT, Perplexity).
+*   **Implementation:**
+    *   **Structure & Clarity:** Added clear "What is Upcycling?" definition block on the home page for easy entity extraction.
+    *   **Direct Answers:** Formatted "Why Upcycle?" benefits as a bulleted list for better summarization.
+    *   **Structured Data:** Added `FAQPage` schema to `how-it-works.html` to provide direct Q&A data to search engines.
+    *   **Authority:** Content focuses on factual definitions and practical steps.
+
 ## Analytics
 *   **Google Analytics:** Integrated for site traffic tracking.
     *   Added Global Site Tag (gtag.js) to all HTML pages (`index.html`, `how-it-works.html`, `inspiration.html`, `privacy.html`, `terms.html`).
