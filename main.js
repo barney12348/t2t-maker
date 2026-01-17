@@ -41,6 +41,11 @@ const TRANSLATIONS = {
         share_btn: "Share",
         share_msg: "Check out this upcycling idea: ",
         share_success: "Link copied to clipboard!",
+        share_modal_title: "Share this Idea",
+        share_facebook: "Facebook",
+        share_twitter: "Twitter",
+        share_pinterest: "Pinterest",
+        share_copy: "Copy Link",
         // New How It Works & Tips
         how_step1_detail: "Look around for items you don't use anymore—empty jars, cardboard boxes, old t-shirts, or even broken furniture.",
         how_step2_detail: "Our AI technology identifies the object's material, shape, and condition to suggest the best repurposing projects.",
@@ -673,6 +678,66 @@ function initApp() {
     }
 
     // --- Sharing Logic ---
+    function createShareModal(idea) {
+        const modal = document.createElement('div');
+        modal.className = 'modal';
+        modal.id = 'share-modal';
+
+        const encodedUrl = encodeURIComponent(window.location.href);
+        const encodedText = encodeURIComponent(`${idea.title} - ${idea.description}`);
+
+        modal.innerHTML = `
+            <div class="modal-content">
+                <button class="btn-icon close-modal" aria-label="Close">✕</button>
+                <h3>${TRANSLATIONS[currentLang].share_modal_title}</h3>
+                <div class="share-buttons">
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}" target="_blank" class="share-btn facebook">
+                        <span>${TRANSLATIONS[currentLang].share_facebook}</span>
+                    </a>
+                    <a href="https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedText}" target="_blank" class="share-btn twitter">
+                        <span>${TRANSLATIONS[currentLang].share_twitter}</span>
+                    </a>
+                    <a href="https://pinterest.com/pin/create/button/?url=${encodedUrl}&description=${encodedText}" target="_blank" class="share-btn pinterest">
+                        <span>${TRANSLATIONS[currentLang].share_pinterest}</span>
+                    </a>
+                    <button class="share-btn copy-link">
+                        <span>${TRANSLATIONS[currentLang].share_copy}</span>
+                    </button>
+                </div>
+            </div>
+        `;
+        return modal;
+    }
+
+    function showShareModal(idea) {
+        const modal = createShareModal(idea);
+        document.body.appendChild(modal);
+
+        // Show the modal
+        setTimeout(() => modal.classList.add('visible'), 10);
+
+        const closeModal = () => {
+            modal.classList.remove('visible');
+            setTimeout(() => modal.remove(), 300);
+        };
+
+        modal.querySelector('.close-modal').addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        modal.querySelector('.copy-link').addEventListener('click', async () => {
+            try {
+                await navigator.clipboard.writeText(window.location.href);
+                alert(TRANSLATIONS[currentLang].share_success);
+            } catch (err) {
+                console.error('Failed to copy: ', err);
+            }
+        });
+    }
+
     async function handleShare(idea) {
         const shareData = {
             title: `Upcycle AI: ${idea.title}`,
@@ -687,13 +752,7 @@ function initApp() {
                 console.log('Error sharing:', err);
             }
         } else {
-            // Fallback: Copy to clipboard
-            try {
-                await navigator.clipboard.writeText(`${shareData.text} ${shareData.url}`);
-                alert(TRANSLATIONS[currentLang].share_success);
-            } catch (err) {
-                console.error('Failed to copy: ', err);
-            }
+            showShareModal(idea);
         }
     }
 

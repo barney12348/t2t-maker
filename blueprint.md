@@ -23,6 +23,7 @@ Build a multi-page web application to demonstrate the "DIY & Upcycling Expert" p
     *   Handle image file selection/drop on the Home page.
     *   Implement language switching across all pages using `localStorage` and `data-i18n`.
     *   Handle cross-page navigation (e.g., linking to the Saved section on the Home page from other pages).
+    *   **Social Sharing:** Implemented a share modal with options for Facebook, Twitter, Pinterest, and copying a direct link. This provides a better user experience than the native Web Share API alone.
     *   **Content Visibility:** Manage visibility of static "SEO-friendly" content on the home page vs. dynamic application state.
 3.  **UI Construction:**
     *   Maintain a consistent header and footer across all pages.
