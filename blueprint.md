@@ -51,7 +51,7 @@ Build a multi-page web application to demonstrate the "DIY & Upcycling Expert" p
 *   **Objective:** Maximize search visibility on Google and Naver.
 *   **Implementation:**
     *   **Meta Tags:** Updated `<title>`, `<meta description>`, and added `<meta keywords>` on all pages for better relevance.
-    *   **Canonical URLs:** Added self-referencing canonical tags pointing to the GitHub Pages domain (`https://barney12348.github.io/t2t-maker/`) to prevent duplicate content issues.
+    *   **Canonical URLs:** Added self-referencing canonical tags pointing to the Cloudflare Pages domain (`https://t2t-maker.pages.dev/`) to prevent duplicate content issues.
     *   **Open Graph (OG) & Twitter Cards:** Implemented for rich social media sharing previews.
     *   **Structured Data (JSON-LD):**
         *   `WebSite` schema on `index.html`.
