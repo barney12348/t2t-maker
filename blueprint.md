@@ -42,3 +42,11 @@ Build a multi-page web application to demonstrate the "DIY & Upcycling Expert" p
 
     *   `ads.txt` added to root.
     *   AdSense script and meta tag added to `index.html`.
+
+## Analytics
+*   **Google Analytics:** Integrated for site traffic tracking.
+    *   Added Global Site Tag (gtag.js) to all HTML pages (`index.html`, `how-it-works.html`, `inspiration.html`, `privacy.html`, `terms.html`).
+
+## Analytics
+*   **Google Analytics:** Integrated for site traffic tracking.
+    *   Added Global Site Tag (gtag.js) to all HTML pages (`index.html`, `how-it-works.html`, `inspiration.html`, `privacy.html`, `terms.html`).
