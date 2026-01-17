@@ -47,6 +47,18 @@ Build a multi-page web application to demonstrate the "DIY & Upcycling Expert" p
 *   **Microsoft Clarity:** Integrated for user behavior tracking (heatmaps, session recordings).
     *   Added Clarity tracking script to all HTML pages.
 
+## SEO Optimization (New)
+*   **Objective:** Maximize search visibility on Google and Naver.
+*   **Implementation:**
+    *   **Meta Tags:** Updated `<title>`, `<meta description>`, and added `<meta keywords>` on all pages for better relevance.
+    *   **Canonical URLs:** Added self-referencing canonical tags pointing to the GitHub Pages domain (`https://barney12348.github.io/t2t-maker/`) to prevent duplicate content issues.
+    *   **Open Graph (OG) & Twitter Cards:** Implemented for rich social media sharing previews.
+    *   **Structured Data (JSON-LD):**
+        *   `WebSite` schema on `index.html`.
+        *   `HowTo` schema on `how-it-works.html`.
+        *   `ItemList` schema on `inspiration.html`.
+    *   **Sitemap & Robots.txt:** Updated to reflect the correct GitHub Pages URL structure.
+
 ## Analytics
 *   **Google Analytics:** Integrated for site traffic tracking.
     *   Added Global Site Tag (gtag.js) to all HTML pages (`index.html`, `how-it-works.html`, `inspiration.html`, `privacy.html`, `terms.html`).
